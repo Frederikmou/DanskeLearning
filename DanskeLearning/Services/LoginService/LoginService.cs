@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
+using Core.Models;
 
-namespace DanskeLearning.Services.User;
+namespace DanskeLearning.Services.LoginService;
 
 public class LoginService
 {
