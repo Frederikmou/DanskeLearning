@@ -9,4 +9,5 @@ public class User
     public string role { get; set; }
     public double phoneNumber { get; set; }
     public string UserId { get; set; }
+    public string userName { get; set; } //a-nummer
 }

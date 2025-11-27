@@ -1,5 +1,5 @@
 using Core.Models;
-namespace DanskeLearning.Services.LoginService;
+namespace DanskeLearning.Services.UserSessionService;
 
 public interface IUserSessionService
 {

@@ -1,6 +1,6 @@
 using Core.Models;
 using Blazored.LocalStorage;
-namespace DanskeLearning.Services.LoginService;
+namespace DanskeLearning.Services.UserSessionService;
 
 public class UserSessionService  : IUserSessionService
 {
