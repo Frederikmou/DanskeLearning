@@ -1,5 +1,5 @@
 namespace DanskeLearning.Services.Team;
-public class ITeamService
+public interface ITeamService
 {
     
 }

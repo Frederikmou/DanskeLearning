@@ -1,6 +1,6 @@
 namespace DanskeLearning.Services.Articles;
 
-public class IArticlesService
+public interface IArticlesService
 {
     
 }

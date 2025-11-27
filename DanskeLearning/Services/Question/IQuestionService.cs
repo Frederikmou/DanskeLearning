@@ -1,6 +1,6 @@
 namespace DanskeLearning.Services.Question;
 
-public class IQuestionService
+public interface IQuestionService
 {
     
 }

@@ -1,5 +1,5 @@
 namespace DanskeLearning.Services.TestQuestionOption;
-public class ITestQuestionOptionService
+public interface ITestQuestionOptionService
 {
     
 }
