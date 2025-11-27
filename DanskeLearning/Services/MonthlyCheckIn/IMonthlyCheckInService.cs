@@ -1,4 +1,4 @@
-namespace Server.Repositories.MonthlyCheckIn;
+namespace DanskeLearning.Services.LearningAssignment;
 
 public class IMonthlyCheckInService
 {

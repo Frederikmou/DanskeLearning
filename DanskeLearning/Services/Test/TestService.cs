@@ -1,5 +1,6 @@
 namespace DanskeLearning.Services.Test;
-public class ITestService
+
+public class TestService
 {
     
 }

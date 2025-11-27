@@ -1,6 +1,6 @@
 namespace DanskeLearning.Services.EmployeeProfile;
 
-public class IEmployeeProfileService
+public class EmployeeProfile
 {
     
 }

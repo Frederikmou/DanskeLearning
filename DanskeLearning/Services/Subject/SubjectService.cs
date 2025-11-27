@@ -1,5 +1,6 @@
 namespace DanskeLearning.Services.Subject;
-public class ISubjectService
+
+public class SubjectService
 {
     
 }

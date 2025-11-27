@@ -1,5 +1,6 @@
 namespace DanskeLearning.Services.User;
-public class IUserService
+
+public class UserService
 {
-   
+    
 }
