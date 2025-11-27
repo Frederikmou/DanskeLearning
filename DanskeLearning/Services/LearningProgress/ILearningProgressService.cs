@@ -1,6 +1,6 @@
 namespace DanskeLearning.Services.LearningAssignment;
 
-public class ILearningProgressService
+public interface ILearningProgressService
 {
     
 }

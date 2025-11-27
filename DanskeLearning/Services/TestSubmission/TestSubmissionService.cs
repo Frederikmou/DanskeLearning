@@ -1,5 +1,6 @@
 namespace DanskeLearning.Services.TestSubmission;
-public interface ITestSubmissionService
+
+public class TestSubmissionService
 {
     
 }

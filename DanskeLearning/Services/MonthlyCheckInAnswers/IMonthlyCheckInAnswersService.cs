@@ -1,6 +1,6 @@
 namespace DanskeLearning.Services.MonthlyCheckInAnswers;
 
-public class IMonthlyCheckInAnswersService
+public interface IMonthlyCheckInAnswersService
 {
     
 }
