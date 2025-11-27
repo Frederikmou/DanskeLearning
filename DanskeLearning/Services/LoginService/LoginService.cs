@@ -14,23 +14,24 @@ public class LoginService
         _client = client;
     }
 
-    public async Task<User?> Login(UserLogin login)
+public async Task<User?> Login(UserLogin login)
+{
+    if (login is null)
     {
-        if (login is null)
-        {
-            return null;
-        }
-        var response = await _client.PostAsJsonAsync(LoginEndpoint, login);
-        if (!response.IsSuccessStatusCode)
-        {
-            return null;
-        }
-
-        var userId = await response.Content.ReadFromJsonAsync<int>();
-        if (userId == 0)
-        {
-            return null;
-        }
-        return await _client.GetFromJsonAsync<User>($"{UserEndpoint}/{userId}");
+        return null;
     }
+    var response = await _client.PostAsJsonAsync(LoginEndpoint, login);
+    if (!response.IsSuccessStatusCode)
+    {
+        return null;
+    }
+
+    var userId = await response.Content.ReadFromJsonAsync<int>();
+    if (userId == 0)
+    {
+        return null;
+    }
+    return await _client.GetFromJsonAsync<User>($"{UserEndpoint}/{userId}");
+}
+
 }

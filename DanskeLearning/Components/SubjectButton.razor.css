@@ -1,0 +1,26 @@
+﻿.subject-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Alle knapper får margin i stedet for gap */
+.subject-button {
+    background-color: navy;
+    color: white;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 150px;
+    text-align: center;
+    transition: transform 0.1s;
+    margin: 40px;
+    box-sizing: border-box;
+}
+
+.subject-button:hover {
+    background-color: #000080;
+    transform: scale(1.05);
+}
