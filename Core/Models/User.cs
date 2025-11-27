@@ -8,4 +8,5 @@ public class User
     public string password { get; set; }
     public string role { get; set; }
     public double phoneNumber { get; set; }
+    public string UserId { get; set; }
 }
