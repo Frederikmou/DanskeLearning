@@ -1,6 +1,33 @@
 ﻿@page "/Dashboard"
+@using Core.Models
+@using DanskeLearning.Services.DashboardService
+@inject IDashboardSerivce DashboardService
 <h3>Dashboard</h3>
 
+<p>Se oversigt over emner</p>
+
+@if (subjects == null)
+{
+    <p>Ingen emner</p>
+}
+else
+{
+    @foreach (var s in subjects)
+    {
+        <p>@s.subjectId</p>
+        <p>@s.title</p>
+    }
+}
+
+
+
 @code {
-    
+
+    private List<Subject> subjects;
+
+    protected override async Task OnInitializedAsync()
+    {
+        subjects = await DashboardService.GetSubjectsAsync();
+    }
+
 }
