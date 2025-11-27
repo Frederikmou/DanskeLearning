@@ -14,7 +14,7 @@
         <EditForm Model="@loginModel" OnValidSubmit="OnClickLogin">
             
             <div class="form-floating-group">
-                <InputText id="usname" class="form-control" @bind-Value="loginModel.Username" placeholder="Username"/>
+                <InputText id="usname" class="form-control" @bind-Value="loginModel.userName" placeholder="Username"/>
                 <label for="usname">Username</label>
             </div>
             
@@ -22,7 +22,7 @@
                 <InputText id="pwd"
                            type="password"
                            class="form-control"
-                           @bind-Value="loginModel.Password"
+                           @bind-Value="loginModel.password"
                            placeholder="Password"/>
                 <label for="pwd">Password</label>
 
@@ -44,7 +44,7 @@
 
 
 @code {
-    UserLogin loginModel = new();
+    Login loginModel = new();
 
     string errorText = "";
 

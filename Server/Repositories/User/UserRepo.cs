@@ -4,5 +4,5 @@ namespace Server.Repositories.User;
 
 public class UserRepo : IUserRepo
 {
-    private const string connectionString = @""
+    private const string connectionString = @"";
 }

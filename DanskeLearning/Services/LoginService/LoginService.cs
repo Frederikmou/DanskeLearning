@@ -14,7 +14,7 @@ public class LoginService
         _client = client;
     }
 
-public async Task<User?> Login(UserLogin login)
+public async Task<User?> Login(Login login)
 {
     if (login is null)
     {
