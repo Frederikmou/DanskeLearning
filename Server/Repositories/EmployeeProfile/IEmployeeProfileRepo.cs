@@ -1,6 +1,6 @@
 namespace Server.Repositories.EmployeeProfile;
 
-public class IEmployeeProfileRepo
+public interface IEmployeeProfileRepo
 {
     
 }

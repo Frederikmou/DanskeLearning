@@ -1,6 +1,6 @@
 namespace Server.Repositories.TestQuestionOption;
 
-public class ITestQuestionOptionRepo
+public interface ITestQuestionOptionRepo
 {
     
 }

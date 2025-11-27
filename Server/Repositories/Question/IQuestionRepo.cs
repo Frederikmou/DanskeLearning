@@ -1,6 +1,6 @@
 namespace Server.Repositories.Question;
 
-public class IQuestionRepo
+public interface IQuestionRepo
 {
     
 }

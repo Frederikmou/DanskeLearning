@@ -1,6 +1,6 @@
 namespace Server.Repositories.Team;
 
-public class ITeamRepo
+public interface ITeamRepo
 {
     
 }

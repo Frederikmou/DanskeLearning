@@ -1,6 +1,6 @@
 namespace Server.Repositories.LearningProgress;
 
-public class ILearningProgressRepo
+public interface ILearningProgressRepo
 {
     
 }

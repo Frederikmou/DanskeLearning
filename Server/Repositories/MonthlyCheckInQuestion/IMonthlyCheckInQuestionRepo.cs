@@ -1,6 +1,6 @@
 namespace Server.Repositories.MonthlyCheckInQuestion;
 
-public class IMonthlyCheckInQuestionRepo
+public interface IMonthlyCheckInQuestionRepo
 {
     
 }

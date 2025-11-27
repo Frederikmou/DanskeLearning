@@ -1,6 +1,6 @@
 namespace Server.Repositories.LearningAssignment;
 
-public class ILearningAssignmentRepo
+public interface ILearningAssignmentRepo
 {
     
 }

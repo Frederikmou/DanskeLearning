@@ -1,6 +1,6 @@
 namespace Server.Repositories.Test;
 
-public class ITestRepo
+public interface ITestRepo
 {
     
 }

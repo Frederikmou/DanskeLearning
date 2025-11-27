@@ -1,6 +1,6 @@
 namespace Server.Repositories.User;
 
-public class IUserRepo
+public interface IUserRepo
 {
     
 }
