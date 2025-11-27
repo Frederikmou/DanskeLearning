@@ -1,7 +1,8 @@
 @page "/LoginPage"
 @using Core.Models
 @using DanskeLearning.Services.LoginService
-@inject NavigationManager navMananager
+@using DanskeLearning.Services.UserSessionService
+@inject NavigationManager navManager
 @inject ILoginService loginService
 @inject IUserSessionService userSessionService
 
@@ -12,13 +13,55 @@
         
         <EditForm Model="@loginModel" OnValidSubmit="OnClickLogin">
             
+            <div class="form-floating-group">
+                <InputText id="usname" class="form-control" @bind-Value="loginModel.Username" placeholder="Username"/>
+                <label for="usname">Username</label>
+            </div>
+            
+            <div class="form-floating-group">
+                <InputText id="pwd"
+                           type="password"
+                           class="form-control"
+                           @bind-Value="loginModel.Password"
+                           placeholder="Password"/>
+                <label for="pwd">Password</label>
+
+            </div>
+            
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
         </EditForm>
-
+        
+        @if (!string.IsNullOrEmpty(errorText))
+        {
+            <div class="error-message">
+                <span class="error-text">@errorText</span>
+            </div>
+        }
     </div>
-
 </div>
 
 
 @code {
-    
+    UserLogin loginModel = new();
+
+    string errorText = "";
+
+    private async Task OnClickLogin()
+    {
+        errorText = string.Empty;
+
+        var user = await loginService.Login(loginModel);
+
+        if (user == null)
+        {
+            errorText = "Wrong username or password";
+        }
+        else
+        {
+            await userSessionService.SetUserAsync(user);
+            navManager.NavigateTo("/", forceLoad: true);
+        }
+    }
 }
