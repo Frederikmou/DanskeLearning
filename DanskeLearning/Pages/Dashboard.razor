@@ -1,5 +1,6 @@
 ﻿@page "/Dashboard"
 @using Core.Models
+@using DanskeLearning.Components
 @using DanskeLearning.Services.DashboardService
 @inject IDashboardSerivce DashboardService
 <h3>Dashboard</h3>
@@ -12,13 +13,13 @@
 }
 else
 {
-    @foreach (var s in subjects)
-    {
-        <p>@s.subjectId</p>
-        <p>@s.title</p>
-    }
+    <div class="subject-buttons-container">
+        @foreach (var s in subjects)
+        {
+            <SubjectButton subject="s"/>
+        }
+    </div>
 }
-
 
 
 @code {
