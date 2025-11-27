@@ -1,7 +1,7 @@
 using Core.Models;
 namespace DanskeLearning.Services.DashboardService;
 
-public interface IDashboardSerivce
+public interface IDashboardService
 {
    Task<List<Subject>>  GetSubjectsAsync();
 }

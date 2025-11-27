@@ -2,7 +2,7 @@ using Core.Models;
 
 namespace DanskeLearning.Services.DashboardService;
 
-public class DashboardService : IDashboardSerivce
+public class DashboardService : IDashboardService
 {
     public async Task<List<Subject>> GetSubjectsAsync()
     {
