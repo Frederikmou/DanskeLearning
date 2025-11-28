@@ -2,7 +2,7 @@ using Core.Models;
 using Npgsql;
 namespace Server.Repositories.User;
 
-public class UserRepo : IUserRepo
+public class UserRepo
 {
-    private const string connectionString = @"";
-} 
+    
+}
