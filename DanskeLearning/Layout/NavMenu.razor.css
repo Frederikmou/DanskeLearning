@@ -1,4 +1,4 @@
-/*toppen af navigationbar*/
+/* Top of navigation sidebar */
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -12,7 +12,7 @@
     font-size: 1.1rem;
 }
 
-/*knapper i navigationsbaren*/
+/* Sidebar buttons */
 .btn-nav {
     background-color: transparent;
     color: #d7d7d7;
@@ -40,14 +40,14 @@
     outline: none;
 }
 
-/*navigationsbar scroll*/
+/* Scrollable nav area */
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
     }
 
     .collapse {
-        display: block; /*tilpasning af sidebar*/
+        display: block;
     }
 
     .nav-scrollable {

@@ -1,16 +1,63 @@
 ﻿@inherits LayoutComponentBase
+@using DanskeLearning.Services.UserSessionService
+@inject IUserSessionService UserSession
+@inject NavigationManager NavManager
+
 <div class="page">
     <div class="sidebar">
-        <NavMenu/>
+        <NavMenu />
     </div>
+    
+    <div class="main">
+        
+        <div class="top-row px-4 header-bar">
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <div class="header-left">
+                <!--Plads til evt. logo eller tekst -->
+            </div>
+
+            <div class="header-right">
+
+                @if (UserSession.CurrentUser is null)
+                {
+                    <button class="login-header-btn"
+                            @onclick="@(() => NavManager.NavigateTo("/LoginPage"))">
+                        Log ind
+                    </button>
+                }
+                else
+                {
+                    <span class="header-username">@UserSession.CurrentUser.firstName</span>
+
+                    <button class="logout-header-btn" @onclick="OnLogoutClicked">
+                        Log ud
+                    </button>
+                }
+
+            </div>
+
         </div>
 
+        <!-- CONTENT BODY -->
         <article class="content px-4">
             @Body
         </article>
-    </main>
+
+    </div>
+
 </div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Sørg for at UserSession er initialiseret,
+        // så CurrentUser ikke altid er null her.
+        await UserSession.InitializeAsync();
+    }
+
+    private async Task OnLogoutClicked()
+    {
+        await UserSession.LogoutAsync();
+        NavManager.NavigateTo("/LoginPage", true);
+    }
+}

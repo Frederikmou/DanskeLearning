@@ -28,6 +28,6 @@ public class UserController : ControllerBase
             return Unauthorized();
         }
 
-        return Ok(user.UserId);
+        return Ok(user);
     }
 }
