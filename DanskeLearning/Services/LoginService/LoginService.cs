@@ -6,8 +6,8 @@ namespace DanskeLearning.Services.LoginService;
 public class LoginService : ILoginService
 {
     private readonly HttpClient _client;
-    private const string LoginEndpoint = "http://localhost:5171/api/User/LoginPage";
-    private const string UserEndpoint = "http://localhost:5171/api/User";
+    private const string LoginEndpoint = "http://localhost:5231/api/User/LoginPage";
+    private const string UserEndpoint = "http://localhost:5231/api/User";
 
     public LoginService(HttpClient client)
     {
