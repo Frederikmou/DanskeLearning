@@ -14,6 +14,6 @@ public class SubjectServiceHttp : ISubjectService
     }
     public async Task<List<Articles>> GetAllArticlesAsync()
     {
-      return await _httpClient.GetFromJsonAsync<List<Articles>>($"api/subject");
+      return await _httpClient.GetFromJsonAsync<List<Articles>>($"api/subjects/{{subjectId}}");
     }
 }

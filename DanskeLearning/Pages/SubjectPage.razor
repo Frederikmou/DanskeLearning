@@ -1,28 +1,24 @@
 ﻿@page "/SubjectPage/{SubjectId:int}"
 @using Core.Models
 @using DanskeLearning.Services.DashboardService
-@inject IDashboardService DashboardService
+@using DanskeLearning.Services.SubjectService
+@inject ISubjectService subjectService
 
-@if (subject == null)
-{
-    <p>Intet at vise</p>
-}
-else
-{
-    <h3>@subject.title</h3>
-}
+
 
 
 @code {
     [Parameter]
-    public int SubjectId { get; set; }
+    public int subjectId { get; set; }
 
     private Subject subject;
 
     protected override async Task OnInitializedAsync()
     {
-        var subjects = await DashboardService.GetSubjectsAsync();
-        subject = subjects.FirstOrDefault(s => s.subjectId == SubjectId);
+        var articles = await subjectService.GetAllArticlesAsync();
+        
+        //var subjects = await DashboardService.GetSubjectsAsync();
+        //subject = subjects.FirstOrDefault(s => s.subjectId == subjectId);
     }
 
 }
