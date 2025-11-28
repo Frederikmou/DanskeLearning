@@ -9,11 +9,18 @@ namespace Server.Controllers;
 
 public class SubjectController : ControllerBase
 {
-    private readonly ISubjectRepo SubjectRepo;
+    private readonly ISubjectRepo _subjectRepo;
 
     public SubjectController(ISubjectRepo subjectRepo)
     {
-        SubjectRepo = subjectRepo;
+        _subjectRepo = subjectRepo;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetArticlesByIdAsync(int subjectId)
+    {
+        var articles = await _subjectRepo.GetAllArticleByIdAsync(subjectId);
+        return Ok(articles);
     }
 
 }
