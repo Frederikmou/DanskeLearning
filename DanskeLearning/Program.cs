@@ -5,6 +5,7 @@ using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
 using DanskeLearning.Services.SubjectService;
+using DanskeLearning.Services.UserSessionService;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -16,9 +17,12 @@ builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("http://localhost:5231/") // <-- API port
 });
+
+
 builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
 
 

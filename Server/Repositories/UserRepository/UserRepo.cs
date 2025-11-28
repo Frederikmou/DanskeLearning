@@ -1,7 +1,7 @@
 using Core.Models;
 using Npgsql;
 
-namespace Server.Repositories.User;
+namespace Server.Repositories.UserRepository;
 
 public class UserRepo : IUserRepo
 {

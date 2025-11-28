@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Server.Repositories.User;
+using Server.Repositories.UserRepository;
 using Core.Models;
 
 namespace Server.Controllers;
