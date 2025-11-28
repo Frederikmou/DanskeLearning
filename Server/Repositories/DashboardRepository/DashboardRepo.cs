@@ -10,9 +10,7 @@ namespace Server.Repositories.DashboardRepository
     {
         private const string connectionString =
             @"Server=ep-long-sea-agyfr4ak-pooler.c-2.eu-central-1.aws.neon.tech;
-        User Id=neondb_owner;Password=npg_rwHcEK1Li0Bs;Database=neondb";
-
-        
+    User Id=neondb_owner;Password=npg_rwHcEK1Li0Bs;Database=neondb";
 
         public async Task<List<Subject>> GetAllSubjectsAsync()
         {
