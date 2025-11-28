@@ -9,7 +9,7 @@ public class UserRepo : IUserRepo
         @"Server=ep-long-sea-agyfr4ak-pooler.c-2.eu-central-1.aws.neon.tech;
     User Id=neondb_owner;Password=npg_rwHcEK1Li0Bs;Database=neondb";
 
-    public async Task<Core.Models.User?> GetUserById(string id)
+    public async Task<User?> GetUserById(string id)
     {
         using var db = new NpgsqlConnection(connectionString);
         await db.OpenAsync();
@@ -23,7 +23,7 @@ public class UserRepo : IUserRepo
         if (!reader.Read())
             return null;
         
-        return new Core.Models.User
+        return new User
         {
             UserId = reader.GetString(reader.GetOrdinal("UserId")),
             firstName = reader.GetString(reader.GetOrdinal("firstName")),
@@ -36,7 +36,7 @@ public class UserRepo : IUserRepo
         };
     }
 
-    public async Task<Core.Models.User?> Login(string username, string password)
+    public async Task<User?> Login(string username, string password)
     {
         using var db = new NpgsqlConnection(connectionString);
         await db.OpenAsync();
