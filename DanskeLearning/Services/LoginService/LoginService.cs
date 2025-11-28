@@ -6,8 +6,8 @@ namespace DanskeLearning.Services.LoginService;
 public class LoginService
 {
     private readonly HttpClient _client;
-    private const string LoginEndpoint = "https://localhost:5001/api/login";
-    private const string UserEndpoint = "https://localhost:5001/api/user";
+    private const string LoginEndpoint = "api/user/login";
+    private const string UserEndpoint = "api/user";
 
     public LoginService(HttpClient client)
     {
@@ -16,7 +16,7 @@ public class LoginService
 
 public async Task<User?> Login(Login login)
 {
-    if (login is null)
+    if (Login is null)
     {
         return null;
     }
@@ -26,12 +26,12 @@ public async Task<User?> Login(Login login)
         return null;
     }
 
-    var userId = await response.Content.ReadFromJsonAsync<int>();
-    if (userId == 0)
+    var UserId = await response.Content.ReadFromJsonAsync<string>();
+    if (UserId == 0)
     {
         return null;
     }
-    return await _client.GetFromJsonAsync<User>($"{UserEndpoint}/{userId}");
+    return await _client.GetFromJsonAsync<User>($"{UserEndpoint}/{UserId}");
 }
 
 }

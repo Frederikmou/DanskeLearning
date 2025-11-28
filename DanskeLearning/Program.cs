@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DanskeLearning;
 using DanskeLearning.Services.DashboardService;
+using DanskeLearning.Services.LoginService;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -14,5 +15,6 @@ builder.Services.AddScoped(sp => new HttpClient
 });
 builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 
+builder.Services.AddScoped<ILoginService, LoginService
 
 await builder.Build().RunAsync();
