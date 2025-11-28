@@ -6,6 +6,7 @@ using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
 using DanskeLearning.Services.SubjectService;
 
+
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -18,6 +19,7 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+
 
 
 await builder.Build().RunAsync();
