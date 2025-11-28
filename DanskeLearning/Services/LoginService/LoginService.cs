@@ -3,7 +3,7 @@ using Core.Models;
 
 namespace DanskeLearning.Services.LoginService;
 
-public class LoginService
+public class LoginService : ILoginService
 {
     private readonly HttpClient _client;
     private const string LoginEndpoint = "api/user/login";
@@ -16,7 +16,7 @@ public class LoginService
 
 public async Task<User?> Login(Login login)
 {
-    if (Login is null)
+    if (Login == null)
     {
         return null;
     }
@@ -27,7 +27,7 @@ public async Task<User?> Login(Login login)
     }
 
     var UserId = await response.Content.ReadFromJsonAsync<string>();
-    if (UserId == 0)
+    if (UserId == "0")
     {
         return null;
     }

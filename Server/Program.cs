@@ -1,5 +1,6 @@
 
 using Server.Repositories.DashboardRepository;
+using Server.Repositories.SubjectRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IDashboardRepo, DashboardRepo>();
-
+builder.Services.AddScoped<ISubjectRepo, SubjectRepo>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("policy", policy =>
