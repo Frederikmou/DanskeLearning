@@ -15,7 +15,7 @@ public class UserRepo : IUserRepo
         await db.OpenAsync();
 
         var cmd = db.CreateCommand();
-        cmd.CommandText = @"SELECT * FROM ""Users"" WHERE ""UserId"" = @id";
+        cmd.CommandText = @"SELECT * FROM user WHERE UserId = @id";
         cmd.Parameters.AddWithValue("@id", id);
 
         using var reader = await cmd.ExecuteReaderAsync();
@@ -42,7 +42,7 @@ public class UserRepo : IUserRepo
         await db.OpenAsync();
 
         var cmd = db.CreateCommand();
-        cmd.CommandText = @"SELECT * FROM ""Users"" WHERE ""userName"" = @username AND ""password"" = @password";
+        cmd.CommandText = @"SELECT * FROM user WHERE userName = @username AND password = @password";
 
         cmd.Parameters.AddWithValue("@username", username);
         cmd.Parameters.AddWithValue("@password", password);
@@ -52,7 +52,7 @@ public class UserRepo : IUserRepo
         if (!reader.Read())
             return null;
 
-        return new Core.Models.User
+        return new User
         {
             UserId = reader.GetString(reader.GetOrdinal("UserId")),
             firstName = reader.GetString(reader.GetOrdinal("firstName")),
