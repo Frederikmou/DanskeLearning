@@ -1,4 +1,8 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using DanskeLearning.Services.UserSessionService
+@inject NavigationManager NavManager
+@inject IUserSessionService UserSession
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">DanskeLearning</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -7,32 +11,67 @@
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass nav-scrollable">
     <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/LoginPage">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Log In
-            </NavLink>
-        </div>
+
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/"))">
+            Home
+        </button>
+
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/counter"))">
+            Counter
+        </button>
+
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/weather"))">
+            Weather
+        </button>
+        
+        @if (UserSession.CurrentUser is null)
+        {
+            <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/LoginPage"))">
+                Log In
+            </button>
+        }
+        else
+        {
+            <div class="user-info">
+                <span class="user-name">@UserSession.CurrentUser.firstName</span>
+                <button class="nav-btn" @onclick="Logout">Log out</button>
+            </div>
+        }
+        
     </nav>
 </div>
 
+
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSession.InitializeAsync();
+        UserSession.OnChange += HandleStateChanged;
+    }
+
+    private void HandleStateChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void NavigateTo(string url)
+    {
+        NavManager.NavigateTo(url);
+    }
+
+    private async Task Logout()
+    {
+        await UserSession.LogoutAsync();
+        NavManager.NavigateTo("/LoginPage", forceLoad: true);
+    }
+
+    public void Dispose()
+    {
+        UserSession.OnChange -= HandleStateChanged;
+    }
+    
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -41,5 +80,4 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
-
 }
