@@ -1,11 +1,11 @@
 /* Top of navigation sidebar */
 .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #003778;
 }
 
 .top-row {
     min-height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #003778;
 }
 
 .navbar-brand {
@@ -22,6 +22,7 @@
     padding: 12px 18px;
     font-size: 0.95rem;
     border-radius: 4px;
+    font-family: "Canvas Sans Medium", sans-serif;
 }
 
 .btn-nav:hover {

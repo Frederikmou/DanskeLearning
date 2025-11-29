@@ -95,7 +95,7 @@ main {
 
 /* Top header bar */
 .header-bar {
-    background-color: rgba(0,0,0,0.4);
+    background-color: #003778;
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -116,7 +116,7 @@ main {
 .login-header-btn,
 .logout-header-btn,
 .header-username {
-    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+    font-family: "Canvas Sans Medium", sans-serif;
 }
 
 /* Login Button */
@@ -124,8 +124,8 @@ main {
     background-color: #0054F0;
     color: white;
     border: none;
-    padding: 8px 18px;
-    border-radius: 6px;
+    padding: 6px 14px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 0.95rem;
     transition: opacity 0.15s ease-in-out;
@@ -136,7 +136,7 @@ main {
     background-color: #0054F0;
     color: white;
     border: none;
-    padding: 8px 18px;
+    padding: 6px 14px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.95rem;
