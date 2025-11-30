@@ -10,7 +10,7 @@ public class SubjectRepo : ISubjectRepo
         @"Server=ep-long-sea-agyfr4ak-pooler.c-2.eu-central-1.aws.neon.tech;
         User Id=neondb_owner;Password=npg_rwHcEK1Li0Bs;Database=neondb";
     
-    public async Task<List<Articles>> GetAllArticleByIdAsync(int  subjectId)
+    public async Task<List<Articles>> GetAllArticleByIdAsync()
     {
         var result = new List<Articles>();
 
@@ -19,18 +19,17 @@ public class SubjectRepo : ISubjectRepo
             await dbConnection.OpenAsync();
 
             var command = dbConnection.CreateCommand();
-            command.CommandText = @"SELECT * FROM articles WHERE subjectid = @subjectid;";
-            command.Parameters.AddWithValue("@subjectid", subjectId);
+            command.CommandText = @"SELECT * FROM articles";
 
             using (var reader = await command.ExecuteReaderAsync())
             {
                 while (reader.Read())
                 {
                     var articleid = reader.GetInt32(0);
-                    var title = reader.GetString(1);
+                    var content  = reader.GetString(1);
                     var subjectid = reader.GetInt32(2);
-                    var content  = reader.GetString(3);
-
+                    var title = reader.GetString(3);
+                    
                     Articles a = new Articles()
                     {
                         articleId = articleid,

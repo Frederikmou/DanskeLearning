@@ -4,7 +4,7 @@ using Server.Repositories.SubjectRepository;
 namespace Server.Controllers;
 
 [ApiController]
-[Route("api/subjects/{subjectId}")]
+[Route("api/articles")]
 
 
 public class SubjectController : ControllerBase
@@ -17,9 +17,9 @@ public class SubjectController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetArticlesByIdAsync(int subjectId)
+    public async Task<IActionResult> GetArticlesByIdAsync()
     {
-        var articles = await _subjectRepo.GetAllArticleByIdAsync(subjectId);
+        var articles = await _subjectRepo.GetAllArticleByIdAsync();
         return Ok(articles);
     }
 

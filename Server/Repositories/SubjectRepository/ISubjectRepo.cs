@@ -4,5 +4,5 @@ namespace Server.Repositories.SubjectRepository;
 
 public interface ISubjectRepo
 {
-    public Task<List<Articles>> GetAllArticleByIdAsync(int subjectId);
+    public Task<List<Articles>> GetAllArticleByIdAsync();
 }

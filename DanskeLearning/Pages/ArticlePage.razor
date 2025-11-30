@@ -1,0 +1,29 @@
+﻿@using Core.Models
+@using DanskeLearning.Services.SubjectService
+@inject ISubjectService subjectService
+@page "/ArticlePage"
+<h3>ArticlePage</h3>
+
+@if (_articles == null)
+{
+    <p>Der er sgu ikke noget</p>
+}
+else
+{
+    foreach (var a in _articles )
+    {
+        <h3>@a.title</h3>
+        <p>@a.content</p>
+    }
+}
+
+@code {
+
+    public List<Articles> _articles;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _articles = await subjectService.GetAllArticlesAsync();
+    }
+
+};
