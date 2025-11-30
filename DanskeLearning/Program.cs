@@ -2,6 +2,7 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DanskeLearning;
+using DanskeLearning.Services.ArticleService;
 using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddScoped<IArticlesService,  ArticlesService>();
 
 
 
