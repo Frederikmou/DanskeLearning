@@ -1,11 +1,13 @@
 ﻿.articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    margin: 16px;
+    
 }
 
 .article-card {
-    background: #f7f7f7;
+    background: navy;
+    color: white;
     padding: 16px;
     border-radius: 8px;
     cursor: pointer;

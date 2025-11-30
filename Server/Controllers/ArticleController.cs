@@ -16,10 +16,18 @@ public class ArticleController : ControllerBase
   _articlesRepo = articlesRepo;
  }
 
- [HttpGet("{subjectId}")]
+ [HttpGet("subject/{subjectId}")]
  public async Task<IActionResult> GetArticlesByIdAsync(int subjectId)
  {
   var articles = await _articlesRepo.GetArticlesByIdAsync(subjectId);
   return Ok(articles);
  }
+
+ [HttpGet("single/{articleId}")]
+ public async Task<IActionResult> GetSingleArticleAsync(int articleId)
+ {
+  var article = await  _articlesRepo.GetSingleArticleAsync(articleId);
+  return Ok(article);
+ }
+
 }

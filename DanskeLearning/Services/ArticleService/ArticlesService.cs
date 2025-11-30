@@ -13,6 +13,11 @@ public class ArticlesService : IArticlesService
     }
     public async Task<List<Articles>> GetArticlesByIdAsync(int  subjectId)
     {
-        return await _httpClient.GetFromJsonAsync<List<Articles>>($"api/articles/{subjectId}");
+        return await _httpClient.GetFromJsonAsync<List<Articles>>($"api/articles/subject/{subjectId}");
+    }
+
+    public async Task<List<Articles>> GetSingleArticlesAsync(int articleId)
+    {
+        return await _httpClient.GetFromJsonAsync<List<Articles>>($"api/articles/single/{articleId}");
     }
 }

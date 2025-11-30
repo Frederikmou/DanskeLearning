@@ -1,4 +1,5 @@
 ﻿@using Core.Models
+@using DanskeLearning.Components
 @using DanskeLearning.Services.ArticleService
 @inject IArticlesService ArticleService
 @page "/ArticlePage/{subjectId:int}"
@@ -14,13 +15,12 @@ else if (articles.Count == 0)
 }
 else
 {
-    <ul>
+    <div class="articles-grid">
         @foreach (var a in articles)
         {
-            <ArticleComponent Article="article" />
+            <ArticleComponent Article="a"/>
         }
-    </ul>
-
+    </div>
 
 @code {
 

@@ -1,15 +1,15 @@
 ﻿@using Core.Models
 @inject NavigationManager nav
 
-<div class="article-card" @onclick="OpenArticle">
-    <h4>@Article.title</h4>
-</div>
+<button class="article-card" @onclick="@OpenArticle">
+    @Article.title
+</button>
 
 @code {
     [Parameter] public Articles Article { get; set; }
 
     private void OpenArticle()
     {
-        nav.NavigateTo($"/ArticleDetails/{Article.subjectId}");
+        nav.NavigateTo($"/ArticleDetails/single/{Article.articleId}");
     }
 }

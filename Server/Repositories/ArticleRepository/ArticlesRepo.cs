@@ -44,4 +44,39 @@ public class ArticlesRepo : IArticlesRepo
         }
         return result;
     }
+
+    public async Task<List<Articles>> GetSingleArticleAsync(int articleId)
+    {
+        var result = new List<Articles>();
+        
+        using (var dbConnection = new NpgsqlConnection(connectionString))
+        {
+            await dbConnection.OpenAsync();
+            
+            var command = dbConnection.CreateCommand();
+            command.CommandText = @"select * from articles where articleId = @articleId";
+            command.Parameters.AddWithValue("@articleId", articleId);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (reader.Read())
+                {
+                    var articleid = reader.GetInt32(0);
+                    var content  = reader.GetString(1);
+                    var subjectid = reader.GetInt32(2);
+                    var title = reader.GetString(3);
+
+                    Articles a = new Articles()
+                    {
+                        articleId = articleid,
+                        subjectId = subjectid,
+                        content = content,
+                        title = title
+                    };
+                    result.Add(a);
+                }
+            }
+        }
+        return result;
+    }
 }
