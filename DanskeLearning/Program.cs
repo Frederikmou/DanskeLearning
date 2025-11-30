@@ -16,7 +16,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 //builder.Services.AddSingleton<IDashboardService, DashboardService>();
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5231/") // <-- API port
+    BaseAddress = new Uri("https://localhost:7148/") // <-- API port
 });
 
 builder.Services.AddBlazoredLocalStorage();
