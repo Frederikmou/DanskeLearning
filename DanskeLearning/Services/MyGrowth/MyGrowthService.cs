@@ -4,7 +4,7 @@ using Core.Models;
 
 namespace DanskeLearning.Services.MyGrowth;
 
-public class MyGrowthService : IMyGrowthService
+public class MyGrowthService 
 {
     private HttpClient _httpClient;
 
