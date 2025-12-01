@@ -1,0 +1,47 @@
+﻿@using Core.Models
+@page "/mygrowth"
+<h3>My Growth</h3>
+
+<h3>1. Hvilket fagligt område har udfordret dig mest i denne måned, og hvad lærte du af
+    det?</h3>
+<div class="col col-md-6 border-black">
+    <label for="">
+        <InputText id="answerText" class="form-control" @bind-Value=""></InputText>
+    </label>
+</div>
+
+<h3>2. Hvilken ny viden eller kompetence føler du dig mere komfortabel i nu, end du
+    gjorde i sidste måned? </h3>
+<div class="col col-md-6 border-black">
+    <label for="">
+        <InputText id="answerText" class="form-control" @bind-Value=""></InputText>
+    </label>
+</div>
+
+<h3>3. Hvad har motiveret dig mest i dit arbejde den seneste tid? Og hvorfor?</h3>
+<div class="col col-md-6 border-black">
+    <label for="">
+        <InputText id="answerText" class="form-control" @bind-Value=""></InputText>
+    </label>
+</div>
+<h3>4. Hvordan har din trivsel på dit arbejde været den seneste måned? (energi, overskud, motivation eller lignende)</h3>
+<div class="col col-md-6 border-black">
+    <label for="">
+        <InputText id="answerText" class="form-control" @bind-Value=""></InputText>
+    </label>
+</div>
+<h3>5. Hvad vil du gerne fokusere på i den kommende måned for at styrke din faglige eller personlige udvikling?</h3>
+<div class="col col-md-6 border-black">
+    <label for="">
+        <InputText id="" class="form-control" @bind-Value=""></InputText>
+    </label>
+</div>
+@code {
+
+    private List<MonthlyCheckInAnswers> growth;
+
+    private MonthlyCheckInAnswers _answers = new MonthlyCheckInAnswers();
+
+
+
+}
