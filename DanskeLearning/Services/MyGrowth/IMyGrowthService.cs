@@ -4,5 +4,5 @@ namespace DanskeLearning.Services.MyGrowth;
 
 public interface IMyGrowthService
 {
-    public Task<List<MonthlyCheckInAnswers>> SubmitMonthlyAnswerAsync(int answerId);
+    public Task<List<MyGrowth>> SubmitMonthlyAnswerAsync(int answerId);
 }
