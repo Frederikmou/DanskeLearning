@@ -2,18 +2,20 @@
 @using DanskeLearning.Services.ArticleService
 @inject IArticlesService ArticleService
 @page "/ArticleDetails/single/{articleId:int}"
-<h3>Artikel: </h3>
 
 @if (articles == null)
 {
     <p>Artikel utilgængelig</p>
 }
+
 else
 {
     @foreach (var a in articles)
     {
-        <h3>@a.title</h3>
-        <p>@a.content</p>
+        <div class="article-container">
+            <h3>@a.title</h3>
+            <p>@a.content</p>
+        </div>
     }
 }
 

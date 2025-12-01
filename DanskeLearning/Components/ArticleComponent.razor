@@ -1,9 +1,9 @@
 ﻿@using Core.Models
 @inject NavigationManager nav
 
-<button class="article-card" @onclick="@OpenArticle">
+<div class="article-card" @onclick="@OpenArticle">
     @Article.title
-</button>
+</div>
 
 @code {
     [Parameter] public Articles Article { get; set; }
