@@ -1,6 +1,7 @@
 using Server.Repositories.DashboardRepository;
 using Server.Repositories.SubjectRepository;
 using Server.Repositories.UserRepository;
+using Server.Repositories.TestRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<IDashboardRepo, DashboardRepo>();
 builder.Services.AddScoped<ISubjectRepo, SubjectRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<ITestRepo, TestRepo>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("policy", policy =>

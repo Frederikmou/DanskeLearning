@@ -1,0 +1,114 @@
+@page "/test/{subjectId:int}"
+@using Core.DTOs
+@using DanskeLearning.Services.TestService
+@using DanskeLearning.Services.UserSessionService
+@inject ITestService TestService
+@inject IUserSessionService UserSession
+@inject NavigationManager NavManager
+
+<div class="test-wrapper">
+
+    <h1 class="test-title">Test</h1>
+
+    @if (_test == null)
+    {
+        <p class="loading-text">Loading test...</p>
+    }
+    else
+    {
+        <div class="test-card">
+
+            <h3 class="questions-header">Questions:</h3>
+
+            <EditForm OnValidSubmit="SubmitTest">
+                @for (int i = 0; i < _test.Questions.Count; i++)
+                {
+                    var q = _test.Questions[i];
+                    <div class="question-block">
+                        <p class="question-text">
+                            <span class="number">@($"{i + 1}.")</span> @q.QuestionText
+                        </p>
+
+                        <div class="options-container">
+                            @foreach (var o in q.Options)
+                            {
+                                <label class="option-line">
+                                    <input type="radio"
+                                           name="q@q.QuestionId"
+                                           @onchange="() => OnOptionSelected(q.QuestionId, o.OptionId)" />
+                                    <span>@o.OptionText</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                }
+
+
+                <button type="submit" class="primary-btn">Submit Test</button>
+            </EditForm>
+
+            @if (_scoreVisible && _result != null)
+            {
+                <div class="result-box @( _result.Passed ? "passed" : "failed")">
+                    <p class="result-score">
+                        Result: @_result.CorrectAnswers / @_result.TotalQuestions
+                    </p>
+
+                    @if (_result.Passed)
+                    {
+                        <p class="result-message">You passed ✔️</p>
+                    }
+                    else
+                    {
+                        <p class="result-message">You did not pass ❌</p>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int subjectId { get; set; }
+
+    private TestDto? _test;
+    private TestSubmitResult? _result;
+    private bool _scoreVisible = false;
+
+    private Dictionary<int, int> _selectedAnswers = new();
+    private int counter = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSession.InitializeAsync();
+        _test = await TestService.GetTest(subjectId);
+    }
+
+    private void OnOptionSelected(int questionId, int optionId)
+    {
+        _selectedAnswers[questionId] = optionId;
+    }
+
+    private async Task SubmitTest()
+    {
+        if (_test == null || UserSession.CurrentUser == null)
+            return;
+
+        var req = new TestSubmitRequest
+        {
+            TestId = _test.TestId,
+            UserId = UserSession.CurrentUser.UserId,
+            Answers = _selectedAnswers.Select(x => new TestSubmitAnswer
+            {
+                QuestionId = x.Key,
+                OptionId = x.Value
+            }).ToList()
+        };
+
+        _result = await TestService.Submit(req);
+        _scoreVisible = true;
+    }
+}
+
+
+

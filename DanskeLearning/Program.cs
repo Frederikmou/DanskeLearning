@@ -7,6 +7,7 @@ using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
 using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.UserSessionService;
+using DanskeLearning.Services.TestService;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -25,7 +26,7 @@ builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-
+builder.Services.AddScoped<ITestService, TestService>();
 
 
 await builder.Build().RunAsync();
