@@ -1,0 +1,113 @@
+/* Page wrapper */
+.test-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+}
+
+/* Title */
+.test-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #003056;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+}
+
+/* Centered large test card */
+.test-card {
+    width: 75%;
+    background: #ECF1F7;
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-family: "Canvas Sans", "Segoe UI", sans-serif;
+}
+
+/* "Questions:" title */
+.questions-header {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Each question group */
+.question-block {
+    margin-bottom: 30px;
+}
+
+/* Question text */
+.question-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+/* Number prefix */
+.number {
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+/* Options list */
+.options-container {
+    margin-left: 0;
+}
+
+.option-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Submit button */
+.primary-btn {
+    background: #0054F0;
+    color: white;
+    padding: 12px 26px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+    margin-top: 20px;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+/* Result panel */
+.result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: "Canvas Sans", "Segoe UI", sans-serif;
+}
+
+.result-box.passed {
+    background-color: #EAF7EF;
+    color: #0B6B2F;
+}
+
+.result-box.failed {
+    background-color: #FBEAEA;
+    color: #8A1F1F;
+}
+
+.result-score {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.result-message {
+    font-size: 16px;
+}
