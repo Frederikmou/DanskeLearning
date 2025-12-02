@@ -2,35 +2,54 @@
 @using DanskeLearning.Components
 @using DanskeLearning.Services.ArticleService
 @inject IArticlesService ArticleService
+@inject NavigationManager NavManager
 @page "/ArticlePage/{subjectId:int}"
-<h3>Artikler relevante for emnet</h3>
 
-@if (articles == null)
-{
-    <p>Indlæser</p>
-}
-else if (articles.Count == 0)
-{
-    <p>Ingen artikler</p>
-}
-else
-{
-    <div class="articles-grid">
-         @foreach (var a in articles)
-         {
-            <ArticleComponent Article="a"/>
-         }
+<div class="articlepage-container">
+
+    <h1 class="articlepage-title">Artikler</h1>
+
+    @if (articles == null)
+    {
+        <p class="empty-message">Indlæser...</p>
+    }
+    else if (articles.Count == 0)
+    {
+        <p class="empty-message">Ingen artikler for dette emne.</p>
+    }
+    else
+    {
+        <div class="articles-grid">
+            @foreach (var a in articles)
+            {
+                <ArticleComponent Article="a" />
+            }
+        </div>
+    }
+
+    <h2 class="test-header">Test</h2>
+
+    <div class="test-section">
+        <button class="test-start-btn" @onclick="StartTest">
+            Test
+        </button>
     </div>
 
+</div>
+
 @code {
-
     [Parameter] public int subjectId { get; set; }
-    
-   private List<Articles> articles;
 
-   protected override async Task OnInitializedAsync()
-   {
-       articles = await ArticleService.GetArticlesByIdAsync(subjectId);
-   }
+    private List<Articles>? articles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await ArticleService.GetArticlesByIdAsync(subjectId);
+    }
+
+    private void StartTest()
+    {
+        NavManager.NavigateTo($"/test/{subjectId}");
+    }
 }
-}
+

@@ -1,6 +1,6 @@
 using Core.DTOs;
 
-namespace Server.Repositories.TestRepo;
+namespace Server.Repositories.TestReposi;
 
 public interface ITestRepo
 {

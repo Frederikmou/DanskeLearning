@@ -2,7 +2,7 @@ using Server.Repositories.ArticleRepository;
 using Server.Repositories.DashboardRepository;
 using Server.Repositories.SubjectRepository;
 using Server.Repositories.UserRepository;
-using Server.Repositories.TestRepo;
+using Server.Repositories.TestReposi;
 
 var builder = WebApplication.CreateBuilder(args);
 

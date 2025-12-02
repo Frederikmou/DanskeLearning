@@ -1,5 +1,5 @@
 using Core.DTOs;
-using Server.Repositories.TestRepo;
+using Server.Repositories.TestReposi;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]

@@ -10,9 +10,13 @@
 
     <h1 class="test-title">Test</h1>
 
-    @if (_test == null)
+    @if (_testNotFound)
     {
-        <p class="loading-text">Loading test...</p>
+        <p class="loading-text">Ingen test fundet for dette emne.</p>
+    }
+    else if (_test == null)
+    {
+        <p class="loading-text">Indlæser test...</p>
     }
     else
     {
@@ -20,7 +24,7 @@
 
             <h3 class="questions-header">Questions:</h3>
 
-            <EditForm OnValidSubmit="SubmitTest">
+            <form @onsubmit="SubmitTest">
                 @for (int i = 0; i < _test.Questions.Count; i++)
                 {
                     var q = _test.Questions[i];
@@ -34,7 +38,8 @@
                             {
                                 <label class="option-line">
                                     <input type="radio"
-                                           name="q@q.QuestionId"
+                                           name="@($"q{q.QuestionId}")"
+                                           checked="@(_selectedAnswers.TryGetValue(q.QuestionId, out var selected) && selected == o.OptionId)"
                                            @onchange="() => OnOptionSelected(q.QuestionId, o.OptionId)" />
                                     <span>@o.OptionText</span>
                                 </label>
@@ -43,9 +48,9 @@
                     </div>
                 }
 
-
                 <button type="submit" class="primary-btn">Submit Test</button>
-            </EditForm>
+            </form>
+
 
             @if (_scoreVisible && _result != null)
             {
@@ -61,7 +66,10 @@
                     else
                     {
                         <p class="result-message">You did not pass ❌</p>
+
+                        <button class="retry-btn" @onclick="ResetTest">Prøv igen</button>
                     }
+
                 </div>
             }
         </div>
@@ -74,14 +82,21 @@
     private TestDto? _test;
     private TestSubmitResult? _result;
     private bool _scoreVisible = false;
+    private bool _testNotFound = false;
 
     private Dictionary<int, int> _selectedAnswers = new();
-    private int counter = 1;
 
     protected override async Task OnInitializedAsync()
     {
         await UserSession.InitializeAsync();
+
         _test = await TestService.GetTest(subjectId);
+
+        if (_test == null)
+        {
+            _testNotFound = true;
+            return;
+        }
     }
 
     private void OnOptionSelected(int questionId, int optionId)
@@ -108,7 +123,15 @@
         _result = await TestService.Submit(req);
         _scoreVisible = true;
     }
+    private void ResetTest()
+    {
+        _selectedAnswers = new Dictionary<int, int>();
+        _scoreVisible = false;
+        _result = null;
+    }
+
 }
+
 
 
 

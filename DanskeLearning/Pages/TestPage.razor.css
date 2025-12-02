@@ -111,3 +111,19 @@
 .result-message {
     font-size: 16px;
 }
+
+.retry-btn {
+    background: #999;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+}
+
+.retry-btn:hover {
+    background: #777;
+}
