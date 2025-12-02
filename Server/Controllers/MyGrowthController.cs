@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Server.Repositories.MyGrowth;
+using Server.Repositories.MyGrowthRepo;
 
 namespace Server.Controllers;
 
@@ -16,7 +16,7 @@ public class MyGrowthController : ControllerBase
         _repo = repo;
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> Create(MyGrowth growth)
     {
         await _repo.CreateAsync(growth);

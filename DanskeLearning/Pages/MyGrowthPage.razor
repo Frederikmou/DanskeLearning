@@ -11,42 +11,42 @@
 <h3>1. Hvilket fagligt område har udfordret dig mest i denne måned, og hvad lærte du af det?</h3>
 <div class="col col-md-6 border-black">
     <label>
-        <InputText id="answerText" class="form-control" @bind-Value="_model.FagligUdfordring"></InputText>
+        <InputText id="answerText1" class="form-control" @bind-Value="_model.FagligUdfordring"></InputText>
     </label>
 </div>
 
 <h3>2. Hvilken ny viden eller kompetence føler du dig mere komfortabel i nu, end du gjorde i sidste måned?</h3>
 <div class="col col-md-6 border-black">
     <label>
-        <InputText id="answerText" class="form-control" @bind-Value="_model.NyKompetence"></InputText>
+        <InputText id="answerText2" class="form-control" @bind-Value="_model.NyKompetence"></InputText>
     </label>
 </div>
 
 <h3>3. Hvad har motiveret dig mest i dit arbejde den seneste tid? Og hvorfor?</h3>
 <div class="col col-md-6 border-black">
     <label>
-        <InputText id="answerText" class="form-control" @bind-Value="_model.Motivation"></InputText>
+        <InputText id="answerText3" class="form-control" @bind-Value="_model.Motivation"></InputText>
     </label>
 </div>
 
 <h3>4. Hvordan har din trivsel på dit arbejde været den seneste måned? (energi, overskud, motivation eller lignende)</h3>
 <div class="col col-md-6 border-black">
     <label>
-        <InputText id="answerText" class="form-control" @bind-Value="_model.Trivsel"></InputText>
+        <InputText id="answerText4" class="form-control" @bind-Value="_model.Trivsel"></InputText>
     </label>
 </div>
 
 <h3>5. Hvad vil du gerne fokusere på i den kommende måned for at styrke din faglige eller personlige udvikling?</h3>
 <div class="col col-md-6 border-black">
     <label>
-        <InputText id="answerText" class="form-control" @bind-Value="_model.answerText"></InputText>
+        <InputText id="answerText5" class="form-control" @bind-Value="_model.answerText"></InputText>
     </label>
 </div>
 
 <button class="btn btn-primary mt-3" @onclick="Save">Gem</button>
 
 @code {
-    private Core.Models.MyGrowth _model = new();
+    private MyGrowth _model = new MyGrowth();
     
     protected override async Task OnInitializedAsync()
     {

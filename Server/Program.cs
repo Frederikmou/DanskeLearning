@@ -1,6 +1,6 @@
 using Server.Repositories.ArticleRepository;
 using Server.Repositories.DashboardRepository;
-using Server.Repositories.MyGrowth;
+using Server.Repositories.MyGrowthRepo;
 using Server.Repositories.SubjectRepository;
 using Server.Repositories.UserRepository;
 
