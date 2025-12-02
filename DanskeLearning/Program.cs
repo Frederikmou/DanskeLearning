@@ -8,6 +8,7 @@ using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
 using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.UserSessionService;
+using DanskeLearning.Services.MyGrowthService;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -27,6 +28,7 @@ builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 builder.Services.AddScoped<IArticlesService,  ArticlesService>();
+builder.Services.AddScoped<IMyGrowthService, MyGrowthHttp>();
 
 
 

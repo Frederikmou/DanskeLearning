@@ -1,6 +1,10 @@
-namespace Server.Repositories.MyGrowth;
+using System.Threading.Tasks;
+using Core.Models;
 
-public interface IMyGrowthRepo
+namespace Server.Repositories.MyGrowth
 {
-    
+    public interface IMyGrowthRepo
+    {
+        Task CreateAsync(Core.Models.MyGrowth growth);
+    }
 }

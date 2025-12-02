@@ -1,5 +1,6 @@
 using Server.Repositories.ArticleRepository;
 using Server.Repositories.DashboardRepository;
+using Server.Repositories.MyGrowth;
 using Server.Repositories.SubjectRepository;
 using Server.Repositories.UserRepository;
 
@@ -14,6 +15,7 @@ builder.Services.AddScoped<IDashboardRepo, DashboardRepo>();
 builder.Services.AddScoped<ISubjectRepo, SubjectRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IArticlesRepo,  ArticlesRepo>();
+builder.Services.AddScoped<IMyGrowthRepo, MyGrowthRepo>();
 
 builder.Services.AddCors(options =>
 {
