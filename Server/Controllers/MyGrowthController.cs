@@ -16,7 +16,7 @@ public class MyGrowthController : ControllerBase
         _repo = repo;
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> Create(MyGrowth growth)
     {
         await _repo.CreateAsync(growth);

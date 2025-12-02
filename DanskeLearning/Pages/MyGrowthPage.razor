@@ -2,7 +2,6 @@
 @using Core.Models
 @using DanskeLearning.Services.MyGrowthService
 @using DanskeLearning.Services.UserSessionService
-@using Microsoft.AspNetCore.Components.Forms
 @inject IMyGrowthService MyGrowthService
 @inject IUserSessionService UserSession
 
@@ -46,9 +45,9 @@
 <button class="btn btn-primary mt-3" @onclick="Save">Gem</button>
 
 @code {
-    private Core.Models.MyGrowth _model = new();
+    public MyGrowth _model = new();
     
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
     {
         
         await UserSession.InitializeAsync();
@@ -69,5 +68,5 @@
     private async Task Save()
     {
         await MyGrowthService.CreateAsync(_model);
-    }
+    } 
 }
