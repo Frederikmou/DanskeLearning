@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Server.Repositories.MyGrowth;
+using Server.Repositories.MyGrowthRepo;
 
 namespace Server.Controllers;
 

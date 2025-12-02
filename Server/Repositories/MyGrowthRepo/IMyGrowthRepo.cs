@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Core.Models;
 
-namespace Server.Repositories.MyGrowth
+namespace Server.Repositories.MyGrowthRepo
 {
     public interface IMyGrowthRepo
     {

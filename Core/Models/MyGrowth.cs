@@ -1,6 +1,8 @@
-﻿namespace Core.Models;
+﻿using Microsoft.AspNetCore.Components;
 
-public class MyGrowth
+namespace Core.Models;
+
+public class MyGrowth : ComponentBase
 {
     public int checkinId { get; set; }
     public Guid userId { get; set; }
