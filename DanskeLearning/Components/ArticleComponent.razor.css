@@ -1,0 +1,25 @@
+﻿.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 4cm); /* brug fast bredde */
+    gap: 16px;       /* afstand mellem bokse */
+    padding: 16px;
+    justify-content: start; /* start fra venstre, ikke stretch */
+}
+
+.article-card {
+    width: 4cm;              /* fast bredde */
+    height: 4cm;             /* fast højde */
+    background: #1e3c72;     /* mørkeblå */
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;         /* pointer mus */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    margin: 30px;
+}
+

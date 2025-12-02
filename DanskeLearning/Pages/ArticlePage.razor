@@ -1,29 +1,36 @@
 ﻿@using Core.Models
-@using DanskeLearning.Services.SubjectService
-@inject ISubjectService subjectService
-@page "/ArticlePage"
-<h3>ArticlePage</h3>
+@using DanskeLearning.Components
+@using DanskeLearning.Services.ArticleService
+@inject IArticlesService ArticleService
+@page "/ArticlePage/{subjectId:int}"
+<h3>Artikler relevante for emnet</h3>
 
-@if (_articles == null)
+@if (articles == null)
 {
-    <p>Der er sgu ikke noget</p>
+    <p>Indlæser</p>
+}
+else if (articles.Count == 0)
+{
+    <p>Ingen artikler</p>
 }
 else
 {
-    foreach (var a in _articles )
-    {
-        <h3>@a.title</h3>
-        <p>@a.content</p>
-    }
-}
+    <div class="articles-grid">
+         @foreach (var a in articles)
+         {
+            <ArticleComponent Article="a"/>
+         }
+    </div>
 
 @code {
 
-    public List<Articles> _articles;
+    [Parameter] public int subjectId { get; set; }
     
-    protected override async Task OnInitializedAsync()
-    {
-        _articles = await subjectService.GetAllArticlesAsync();
-    }
+   private List<Articles> articles;
 
-};
+   protected override async Task OnInitializedAsync()
+   {
+       articles = await ArticleService.GetArticlesByIdAsync(subjectId);
+   }
+}
+}

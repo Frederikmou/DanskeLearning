@@ -1,0 +1,32 @@
+﻿@using Core.Models
+@using DanskeLearning.Services.ArticleService
+@inject IArticlesService ArticleService
+@page "/ArticleDetails/single/{articleId:int}"
+
+@if (articles == null)
+{
+    <p>Artikel utilgængelig</p>
+}
+
+else
+{
+    @foreach (var a in articles)
+    {
+        <div class="article-container">
+            <h3>@a.title</h3>
+            <p>@a.content</p>
+        </div>
+    }
+}
+
+@code {
+    [Parameter] public int articleId { get; set; }
+
+    private List<Articles> articles;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await ArticleService.GetSingleArticlesAsync(articleId);
+    }
+
+}

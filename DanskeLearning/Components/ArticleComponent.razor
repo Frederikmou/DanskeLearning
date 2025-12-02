@@ -1,0 +1,15 @@
+﻿@using Core.Models
+@inject NavigationManager nav
+
+<div class="article-card" @onclick="@OpenArticle">
+    @Article.title
+</div>
+
+@code {
+    [Parameter] public Articles Article { get; set; }
+
+    private void OpenArticle()
+    {
+        nav.NavigateTo($"/ArticleDetails/single/{Article.articleId}");
+    }
+}
