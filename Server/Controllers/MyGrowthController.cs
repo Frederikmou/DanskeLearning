@@ -6,7 +6,7 @@ using Server.Repositories.MyGrowthRepo;
 namespace Server.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/mygrowth")]
 public class MyGrowthController : ControllerBase
 {
     private readonly IMyGrowthRepo _repo;

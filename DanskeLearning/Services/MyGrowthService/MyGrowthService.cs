@@ -13,9 +13,9 @@ namespace DanskeLearning.Services.MyGrowthService
             _httpClient = httpClient;
         }
 
-        public async Task CreateAsync(Core.Models.MyGrowth growth)
+        public async Task CreateAsync(MyGrowth growth)
         {
-            await _httpClient.PostAsJsonAsync("api/MyGrowth", growth);
+            await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
         }
     }
 }
