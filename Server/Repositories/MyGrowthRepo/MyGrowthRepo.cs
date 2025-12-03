@@ -19,7 +19,7 @@ public class MyGrowthRepo : IMyGrowthRepo
         var command = dbConnection.CreateCommand();
 
         command.CommandText =
-            "INSERT INTO mygrowth (checkinid, userid, month, answertext, answerdate, answerrid, questionid, fagligudfordring, nykompetence, motivation, trivsel) " +
+            "INSERT INTO mygrowth (checkinid, userid, month, answertext, answerdate, answerid, questionid, fagligudfordring, nykompetence, motivation, trivsel) " +
             "VALUES (@checkinid, @userid, @month, @answertext, @answerdate, @answerid, @questionid, @fagligudfordring, @nykompetence, @motivation, @trivsel)";
 
         Console.WriteLine(command.CommandText);
