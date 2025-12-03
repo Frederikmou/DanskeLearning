@@ -15,19 +15,14 @@
 <div class="@NavMenuCssClass nav-scrollable">
     <nav class="nav flex-column">
 
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/"))">
-            Home
-        </button>
-
         <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/Dashboard"))">
             Dashboard
         </button>
-
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/weather"))">
-            Weather
+        
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/mygrowth"))">
+            MyGrowth
         </button>
-
-        <!-- 💡 INTET login her længere – det ligger i MainLayout -->
+        
     </nav>
 </div>
 

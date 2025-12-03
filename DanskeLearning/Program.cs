@@ -9,6 +9,7 @@ using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
 using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.UserSessionService;
+using DanskeLearning.Services.MyGrowthService;
 using DanskeLearning.Services.TestService;
 
 
@@ -28,10 +29,10 @@ builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-builder.Services.AddScoped<ITestService, TestService>();
 builder.Services.AddScoped<IArticlesService,  ArticlesService>();
+builder.Services.AddScoped<ITestService, TestService>();
+builder.Services.AddScoped<IMyGrowthService, MyGrowthService>();
 builder.Services.AddScoped<IArticleReadStatusService, ArticleReadStatusService>();
-
 
 
 
