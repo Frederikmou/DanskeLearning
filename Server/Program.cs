@@ -19,6 +19,7 @@ builder.Services.AddScoped<ITestRepo, TestRepo>();
 builder.Services.AddScoped<IArticlesRepo,  ArticlesRepo>();
 builder.Services.AddScoped<IMyGrowthRepo, MyGrowthRepo>();
 
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("policy", policy =>
