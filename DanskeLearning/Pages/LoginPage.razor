@@ -52,15 +52,15 @@
     {
         errorText = string.Empty;
 
-        var user = await loginService.Login(loginModel);
+        var users = await loginService.Login(loginModel);
 
-        if (user == null)
+        if (users == null)
         {
             errorText = "Wrong username or password";
         }
         else
         {
-            await userSessionService.SetUserAsync(user);
+            await userSessionService.SetUserAsync(users);
             navManager.NavigateTo("/", forceLoad: true);
         }
     }
