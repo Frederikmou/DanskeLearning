@@ -5,6 +5,7 @@
 @using Microsoft.AspNetCore.Components.Forms
 @inject IMyGrowthService MyGrowthService
 @inject IUserSessionService UserSession
+@inject NavigationManager navmanager
 
 <h3>My Growth</h3>
 
@@ -69,5 +70,7 @@
     private async Task Save()
     {
         await MyGrowthService.CreateAsync(growth);
+        navmanager.NavigateTo($"/MyGrowthDashboard");
+        
     }
 }

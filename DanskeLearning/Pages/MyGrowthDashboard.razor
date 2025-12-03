@@ -1,0 +1,24 @@
+﻿@using Components
+@using Core.Models
+@using DanskeLearning.Components
+@page "/MyGrowthDashboard"
+<h2 class="text-center fw-bold">MyGrowth</h2>
+
+<h3>New Monthly Ckeck-In</h3>
+
+
+<MyGrowthCheckIn></MyGrowthCheckIn>
+
+<!--@if (growth == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <MyGrowthCheckIn></MyGrowthCheckIn>
+}
+-->
+
+@code {
+    private List<MyGrowth> growth;
+}
