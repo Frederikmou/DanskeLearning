@@ -1,0 +1,48 @@
+@using DanskeLearning.Services.UserSessionService
+@using DanskeLearning.Services.ArticleReadStatusService
+@inject IUserSessionService UserSessionService
+@inject IArticleReadStatusService ReadStatusService
+
+<div class = "article-read-container"></div>
+<button class="article-isRead-btn @(isRead ? "state-isRead" : "")"
+        disabled="@(!isReady || !userId.HasValue)"
+        @onclick="ToggleAsync">
+    @if (isRead)
+    {
+        <span>&#10003; Læst</span>
+    }
+    else
+    {
+        <span>Markér som læst</span>
+    }
+</button>
+
+@code {
+    [Parameter] public int ArticleId { get; set; }
+
+    private bool isRead;
+    private bool isReady;
+    private Guid? userId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSessionService.InitializeAsync();
+        userId = UserSessionService.CurrentUser?.UserId;
+
+        if (userId.HasValue)
+        {
+            isRead = await ReadStatusService.GetReadStatusAsync(userId.Value, ArticleId);
+        }
+
+        isReady = true;
+    }
+
+    private async Task ToggleAsync()
+    {
+        if (!userId.HasValue)
+            return;
+
+        isRead = !isRead;
+        await ReadStatusService.SetReadStatusAsync(userId.Value, ArticleId, isRead);
+    }
+}

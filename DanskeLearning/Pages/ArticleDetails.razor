@@ -1,5 +1,6 @@
 ﻿@using Core.Models
 @using DanskeLearning.Services.ArticleService
+@using DanskeLearning.Components
 @inject IArticlesService ArticleService
 @page "/ArticleDetails/single/{articleId:int}"
 
@@ -16,6 +17,7 @@ else
             <h3>@a.title</h3>
             <p>@a.content</p>
         </div>
+        <ArticleReadToggle ArticleId="@a.articleId" />
     }
 }
 

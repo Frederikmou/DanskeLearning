@@ -3,6 +3,7 @@ using Server.Repositories.DashboardRepository;
 using Server.Repositories.SubjectRepository;
 using Server.Repositories.UserRepository;
 using Server.Repositories.TestReposi;
+using Server.Repositories.ArticleReadStatusRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddScoped<ISubjectRepo, SubjectRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ITestRepo, TestRepo>();
 builder.Services.AddScoped<IArticlesRepo,  ArticlesRepo>();
+builder.Services.AddScoped<IArticleReadStatusRepo, ArticleReadStatusRepo>();
+
 
 builder.Services.AddCors(options =>
 {

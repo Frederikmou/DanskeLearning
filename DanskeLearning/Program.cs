@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DanskeLearning;
 using DanskeLearning.Services.ArticleService;
+using DanskeLearning.Services.ArticleReadStatusService;
 using DanskeLearning.Services.SubjectService;
 using DanskeLearning.Services.DashboardService;
 using DanskeLearning.Services.LoginService;
@@ -29,6 +30,8 @@ builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 builder.Services.AddScoped<ITestService, TestService>();
 builder.Services.AddScoped<IArticlesService,  ArticlesService>();
+builder.Services.AddScoped<IArticleReadStatusService, ArticleReadStatusService>();
+
 
 
 
