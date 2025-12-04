@@ -1,26 +1,21 @@
-﻿.subject-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-/* Alle knapper får margin i stedet for gap */
-.subject-button {
-    background-color: navy;
-    color: white;
-    padding: 20px 30px;
+﻿.subject-button {
+    width: 4cm;
+    height: 4cm;
+    background-color: #F5F7FB;
+    color: #003366;
+    border-radius: 12px;
     border: none;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    min-width: 150px;
-    text-align: center;
-    transition: transform 0.1s;
-    margin: 40px;
-    box-sizing: border-box;
+    transition: background-color 0.15s ease;
 }
 
 .subject-button:hover {
-    background-color: #000080;
-    transform: scale(1.05);
+    background-color: #E8EEF9;
 }
+
+

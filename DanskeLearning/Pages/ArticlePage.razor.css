@@ -12,6 +12,14 @@
     color: #003366;
 }
 
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 180px);
+    gap: 40px;
+    justify-content: start;
+    padding-left: 20px;
+}
+
 .test-header {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -20,21 +28,6 @@
     color: #003366;
 }
 
-/* Articles */
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
-}
-
-/* Test area */
-.test-section {
-    margin-top: 20px;
-    background-color: #f5f7fb;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-}
 
 .test-start-btn {
     background-color: #0054F0;
@@ -57,4 +50,25 @@
     text-align: center;
     color: #666;
     font-style: italic;
+}
+
+.test-card {
+    width: 4cm;                /* samme størrelse som artikelkort */
+    height: 4cm;
+    background: #F5F7FB;       /* lys blå */
+    color: #003366;            /* samme tekstfarve */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    margin: 30px;              /* samme margin som artikelkortene */
+}
+
+.test-card:hover {
+    background-color: #E8EEF9;
 }
