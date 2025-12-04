@@ -23,4 +23,18 @@ public class TestService : ITestService
         if (!res.IsSuccessStatusCode) return null;
         return await res.Content.ReadFromJsonAsync<TestSubmitResult>();
     }
+    public async Task<bool> GetTestCompleted(Guid userId, int subjectId)
+    {
+        return await _http.GetFromJsonAsync<bool>(
+            $"api/test/completion/{userId}/{subjectId}"
+        );
+    }
+
+    public async Task SetTestCompleted(Guid userId, int subjectId, bool passed)
+    {
+        await _http.PostAsJsonAsync(
+            $"api/test/completion/{userId}/{subjectId}",
+            passed
+        );
+    }
 }

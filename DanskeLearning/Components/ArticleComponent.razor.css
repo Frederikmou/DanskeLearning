@@ -19,6 +19,12 @@
     background-color: #E8EEF9;
 }
 
+.article-card.read {
+    background-color: #aeb4c0;   /* grålig lyseblå */
+    color: #003366;
+}
+
+
 
 
 

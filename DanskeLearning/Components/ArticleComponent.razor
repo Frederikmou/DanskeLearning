@@ -1,12 +1,13 @@
 ﻿@using Core.Models
 @inject NavigationManager nav
 
-<div class="article-card" @onclick="@OpenArticle">
+<div class="article-card @(IsRead ? "read" : "")" @onclick="@OpenArticle">
     @Article.title
 </div>
 
 @code {
     [Parameter] public Articles Article { get; set; }
+    [Parameter] public bool IsRead { get; set; }
 
     private void OpenArticle()
     {

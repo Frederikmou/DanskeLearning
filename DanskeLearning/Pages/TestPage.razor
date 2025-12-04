@@ -124,8 +124,20 @@
         };
 
         _result = await TestService.Submit(req);
+
+        //markerer testen som completed hvis den er bestået
+        if (_result?.Passed == true)
+        {
+            await TestService.SetTestCompleted(
+                UserSession.CurrentUser.UserId,
+                subjectId,
+                true
+            );
+        }
+
         _scoreVisible = true;
     }
+
     private void ResetTest()
     {
         _selectedAnswers = new Dictionary<int, int>();

@@ -72,3 +72,10 @@
 .test-card:hover {
     background-color: #E8EEF9;
 }
+
+.test-card.completed {
+    background-color: #aeb4c0; /* grålig lyseblå */
+    color: #003366;
+}
+
+
