@@ -15,11 +15,11 @@
 <div class="@NavMenuCssClass nav-scrollable">
     <nav class="nav flex-column">
 
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/Dashboard"))">
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/Dashboard"))">
             Dashboard
         </button>
         
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavManager.NavigateTo("/MyGrowthDashboard"))">
+        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/MyGrowthDashboard"))">
             MyGrowth
         </button>
         
@@ -31,6 +31,18 @@
     {
         await UserSession.InitializeAsync();
         UserSession.OnChange += HandleStateChanged;
+    }
+   
+    private void NavigateOrLogin(string targetUrl)
+    {
+        if (UserSession.CurrentUser == null) // ikke logget ind
+        {
+            NavManager.NavigateTo("/LoginPage");
+        }
+        else
+        {
+            NavManager.NavigateTo(targetUrl);
+        }
     }
 
     private void HandleStateChanged()
