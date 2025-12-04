@@ -1,0 +1,15 @@
+.back-arrow {
+    cursor: pointer;
+    color: #003366;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.back-arrow:hover {
+    background-color: #F5F7FB;
+}

@@ -2,9 +2,12 @@
 @using Core.DTOs
 @using DanskeLearning.Services.TestService
 @using DanskeLearning.Services.UserSessionService
+@using DanskeLearning.Components;
 @inject ITestService TestService
 @inject IUserSessionService UserSession
 @inject NavigationManager NavManager
+
+<BackArrow Url="@($"/ArticlePage/{subjectId}")"/>
 
 <div class="test-wrapper">
 

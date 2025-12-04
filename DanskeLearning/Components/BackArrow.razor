@@ -1,0 +1,13 @@
+<div class="back-arrow" @onclick="GoBack">
+    ← Back
+</div>
+
+@code {
+    [Parameter] public string Url { get; set; }
+    [Inject] NavigationManager NavManager { get; set; }
+
+    void GoBack()
+    {
+        NavManager.NavigateTo(Url);
+    }
+}
