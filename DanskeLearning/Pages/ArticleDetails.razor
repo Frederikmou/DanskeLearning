@@ -4,6 +4,8 @@
 @inject IArticlesService ArticleService
 @page "/ArticleDetails/single/{articleId:int}"
 
+<BackArrow Url="@($"/ArticlePage/{articles?.FirstOrDefault()?.subjectId}")"/>
+
 @if (articles == null)
 {
     <p>Artikel utilgængelig</p>

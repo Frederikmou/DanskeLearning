@@ -27,4 +27,20 @@ public class TestController : ControllerBase
         var r = await _repo.SubmitTestAsync(req);
         return Ok(r);
     }
+    
+    // GET: api/test/completion/{userId}/{subjectId}
+    [HttpGet("completion/{userId:guid}/{subjectId:int}")]
+    public async Task<IActionResult> GetTestCompletion(Guid userId, int subjectId)
+    {
+        var status = await _repo.GetTestCompletionStatusAsync(userId, subjectId);
+        return Ok(status);
+    }
+
+    // POST: api/test/completion/{userId}/{subjectId}
+    [HttpPost("completion/{userId:guid}/{subjectId:int}")]
+    public async Task<IActionResult> SetTestCompletion(Guid userId, int subjectId, [FromBody] bool passed)
+    {
+        await _repo.SetTestCompletionStatusAsync(userId, subjectId, passed);
+        return Ok();
+    }
 }

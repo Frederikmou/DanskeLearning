@@ -1,25 +1,31 @@
-﻿.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 4cm); /* brug fast bredde */
-    gap: 16px;       /* afstand mellem bokse */
-    padding: 16px;
-    justify-content: start; /* start fra venstre, ikke stretch */
-}
-
-.article-card {
-    width: 4cm;              /* fast bredde */
-    height: 4cm;             /* fast højde */
-    background: #1e3c72;     /* mørkeblå */
-    color: #fff;
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;         /* pointer mus */
+﻿.article-card {
+    width: 4cm;
+    height: 4cm;
+    background: #F5F7FB;       /* samme lyseblå som testen */
+    color: #003366;            /* samme tekstfarve */
+    border-radius: 12px;       /* samme afrunding */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.2s ease;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
     margin: 30px;
 }
+
+.article-card:hover {
+    background-color: #E8EEF9;
+}
+
+.article-card.read {
+    background-color: #aeb4c0;   /* grålig lyseblå */
+    color: #003366;
+}
+
+
+
+
+
 

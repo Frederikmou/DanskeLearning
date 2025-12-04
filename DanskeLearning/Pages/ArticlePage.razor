@@ -1,7 +1,12 @@
 ﻿@using Core.Models
 @using DanskeLearning.Components
 @using DanskeLearning.Services.ArticleService
+@using DanskeLearning.Services.TestService
+@using DanskeLearning.Services.UserSessionService
+@inject IUserSessionService UserSession
+@inject Services.ArticleReadStatusService.IArticleReadStatusService ArticleReadStatusService
 @inject IArticlesService ArticleService
+@inject ITestService TestService
 @inject NavigationManager NavManager
 @page "/ArticlePage/{subjectId:int}"
 
@@ -22,7 +27,7 @@
         <div class="articles-grid">
             @foreach (var a in articles)
             {
-                <ArticleComponent Article="a" />
+                <ArticleComponent Article="a" IsRead="@(readMap.ContainsKey(a.articleId) && readMap[a.articleId])"/>
             }
         </div>
     }
@@ -30,9 +35,9 @@
     <h2 class="test-header">Test</h2>
 
     <div class="test-section">
-        <button class="test-start-btn" @onclick="StartTest">
+        <div class="test-card @(testCompleted ? "completed" : "")" @onclick="StartTest">
             Test
-        </button>
+        </div>
     </div>
 
 </div>
@@ -41,10 +46,30 @@
     [Parameter] public int subjectId { get; set; }
 
     private List<Articles>? articles;
+    
+    private Dictionary<int, bool> readMap = new();
+    
+    private bool testCompleted = false;
 
     protected override async Task OnInitializedAsync()
     {
+        await UserSession.InitializeAsync();
         articles = await ArticleService.GetArticlesByIdAsync(subjectId);
+        
+        testCompleted = await TestService.GetTestCompleted(
+            UserSession.CurrentUser.UserId, 
+            subjectId
+        );
+
+        var userId = UserSession.CurrentUser.UserId;
+
+        readMap = new Dictionary<int, bool>();
+
+        foreach (var a in articles)
+        {
+            bool isRead = await ArticleReadStatusService.GetReadStatusAsync(userId, a.articleId);
+            readMap[a.articleId] = isRead;
+        }
     }
 
     private void StartTest()

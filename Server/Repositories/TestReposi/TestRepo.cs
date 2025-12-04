@@ -165,6 +165,46 @@ public class TestRepo : ITestRepo
 
         return result;
     }
+    public async Task<bool> GetTestCompletionStatusAsync(Guid userId, int subjectId)
+    {
+        await using var db = new NpgsqlConnection(_cs);
+        await db.OpenAsync();
+
+        var cmd = new NpgsqlCommand(
+            @"SELECT passed
+          FROM testcompletionstatus
+          WHERE userid = @uid AND subjectid = @sid",
+            db);
+
+        cmd.Parameters.AddWithValue("uid", userId);
+        cmd.Parameters.AddWithValue("sid", subjectId);
+
+        var result = await cmd.ExecuteScalarAsync();
+
+        if (result == null)
+            return false; // ikke bestået endnu
+
+        return (bool)result;
+    }
+
+    public async Task SetTestCompletionStatusAsync(Guid userId, int subjectId, bool passed)
+    {
+        await using var db = new NpgsqlConnection(_cs);
+        await db.OpenAsync();
+
+        var cmd = new NpgsqlCommand(
+            @"INSERT INTO testcompletionstatus (userid, subjectid, passed)
+          VALUES (@uid, @sid, @passed)
+          ON CONFLICT (userid, subjectid)
+          DO UPDATE SET passed = @passed;",
+            db);
+
+        cmd.Parameters.AddWithValue("uid", userId);
+        cmd.Parameters.AddWithValue("sid", subjectId);
+        cmd.Parameters.AddWithValue("passed", passed);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
 }
 
 
