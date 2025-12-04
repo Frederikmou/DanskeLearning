@@ -1,0 +1,31 @@
+.article-read-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    width: 100%;
+}
+
+
+.article-isRead-btn {
+   
+    background-color: #003755;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px; 
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+
+.article-isRead-btn.state-isRead {
+    background-color: #87a1b2;
+    opacity: 0.8;
+}
+

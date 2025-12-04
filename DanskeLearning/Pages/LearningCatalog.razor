@@ -1,0 +1,34 @@
+@page "/LearningCatalog"
+@using Core.Models
+@using DanskeLearning.Components
+@using DanskeLearning.Services.DashboardService
+@inject IDashboardService DashboardService
+
+<h3>Learning Catalog</h3>
+
+<p>Se oversigt over emner</p>
+
+@if (subjects == null)
+{
+    <p>Ingen emner</p>
+}
+else
+{
+    <div class="subject-buttons-container">
+        @foreach (var s in subjects)
+        {
+            <SubjectButton subject="@s"/>
+        }
+    </div>
+}
+
+@code {
+
+    private List<Subject> subjects;
+
+    protected override async Task OnInitializedAsync()
+    {
+        subjects = await DashboardService.GetSubjectsAsync();
+    }
+
+}

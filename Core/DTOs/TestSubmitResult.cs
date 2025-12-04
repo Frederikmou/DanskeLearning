@@ -1,6 +1,6 @@
 namespace Core.DTOs;
 
-public class TestSubmitResult
+public class  TestSubmitResult
 {
     public bool Passed { get; set; }
     public int CorrectAnswers { get; set; }
