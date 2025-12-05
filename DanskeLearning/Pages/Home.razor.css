@@ -1,0 +1,49 @@
+.page-container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr 1.3fr;
+    gap: 50px;
+    width: 90%;
+    max-width: 1500px;
+    margin: 60px auto;
+}
+
+.column {
+    font-family: "Canvas Sans Medium", sans-serif;
+    line-height: 1.55;
+}
+
+.center-column {
+    text-align: center;
+}
+
+.center-column h1 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    font-family: "Canvas Sans Medium", sans-serif;
+    font-weight: bold;
+}
+
+.danske-image {
+    width: 100%;
+    aspect-ratio: 3/4; /*cropper med højden*/
+    max-height: 420px; /*matcher tekst højden bedre*/
+    object-fit: cover; /*cropper billedet, så det tilpasses målene fremfor at blive mindre for at tilpasse sig*/
+    object-position: center; /*centrerer crop*/
+    filter: grayscale(100%);
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/*responsive på billedet*/
+@media (max-width: 900px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .danske-image {
+        margin: 0 auto;
+        max-height: 350px;
+        aspect-ratio: 1 / 1;
+    }
+}
