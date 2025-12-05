@@ -17,8 +17,7 @@ public class MyGrowth
     
     
     [Column("answertext")]
-        public string? answerText { get; set; } 
-    
+    public string? answerText { get; set; } 
     
     [Column("fagligudfordring")]
     public string? FagligUdfordring { get; set; }
