@@ -25,7 +25,7 @@ public class MyGrowthController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("User/{userId:guid}")]
+    [HttpGet("user/{userId:guid}")]
     public async Task<ActionResult<List<MyGrowthAnswers>>> GetByUserAsync(Guid userId)
     {
         var answers = await _repo.GetByUserAsync(userId);

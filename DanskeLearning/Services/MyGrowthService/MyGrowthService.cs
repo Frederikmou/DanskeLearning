@@ -15,14 +15,12 @@ namespace DanskeLearning.Services.MyGrowthService
         {
             _httpClient = httpClient;
         }
-
-        // POST api/mygrowth
+        
         public async Task CreateAsync(MyGrowth growth)
         {
             await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
         }
-
-        // GET api/mygrowth/user/{userId}
+        
         public async Task<List<MyGrowthAnswers>> GetByUserAsync(Guid userId)
         {
             var result = await _httpClient.GetFromJsonAsync<List<MyGrowthAnswers>>(
