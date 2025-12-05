@@ -13,7 +13,7 @@ public class UserSessionService  : IUserSessionService
         _sessionStorage = sessionStorage;
     }
 
-    public event Action? OnChange;
+    public event Action? OnChange; 
 
     public User? CurrentUser { get;  private set; }
 
