@@ -1,16 +1,16 @@
 using Core.Models;
-using Blazored.LocalStorage;
+using Blazored.SessionStorage;
 namespace DanskeLearning.Services.UserSessionService;
 
 public class UserSessionService  : IUserSessionService
 {
     private const string StorageKey = "currentUser";
-    private readonly ILocalStorageService _localStorage;
+    private readonly ISessionStorageService _sessionStorage;
     private bool _isInitialized;
 
-    public UserSessionService(ILocalStorageService localStorage)
+    public UserSessionService(ISessionStorageService sessionStorage)
     {
-        _localStorage = localStorage;
+        _sessionStorage = sessionStorage;
     }
 
     public event Action? OnChange;
@@ -20,7 +20,7 @@ public class UserSessionService  : IUserSessionService
     public async Task InitializeAsync()
     {
         if (_isInitialized) return;
-        CurrentUser = await _localStorage.GetItemAsync<User>(StorageKey);
+        CurrentUser = await _sessionStorage.GetItemAsync<User>(StorageKey);
         _isInitialized = true;
         NotifyStateChanged();
     }
@@ -28,14 +28,14 @@ public class UserSessionService  : IUserSessionService
     public async Task SetUserAsync(User user)
     {
         CurrentUser = user;
-        await _localStorage.SetItemAsync(StorageKey, user);
+        await _sessionStorage.SetItemAsync(StorageKey, user);
         NotifyStateChanged();
     }
 
     public async Task LogoutAsync()
     {
         CurrentUser = null;
-        await _localStorage.RemoveItemAsync(StorageKey);
+        await _sessionStorage.RemoveItemAsync(StorageKey);
         NotifyStateChanged();
     }
     private void NotifyStateChanged() => OnChange?.Invoke();
