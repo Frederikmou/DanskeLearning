@@ -1,0 +1,72 @@
+/*hel side hvid baggrund*/
+.login-page-background {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    width: 100%;
+}
+
+/*blå login card*/
+.login-container {
+    background-color: #003B73;
+    padding: 40px;
+    border-radius: 15px;
+    width: 360px;
+    color: white;
+    text-align: center;
+
+    /*remove bootstrap default spacing */
+    box-shadow: 0 0 0;
+}
+
+/* Hide your current "LoginPage" text or restyle it */
+.login-container h3 {
+    display: none;             /* Remove title to match wireframe */
+    color: white;
+}
+
+/* Make the top "Log in" button like the wireframe */
+.login-container .btn-primary {
+    background-color: #0A6EFF !important;
+    border: none;
+    padding: 12px 35px;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* Input groups (floating labels) */
+.form-floating-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/* Style input fields */
+.form-floating-group .form-control {
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+}
+
+/* Label styling (floating style mimic) */
+.form-floating-group label {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: 15px;
+    color: white;
+}
+
+/* Error message styling */
+.error-message {
+    margin-top: 15px;
+}
+
+.error-text {
+    color: #FFB3B3;
+    font-size: 14px;
+}
