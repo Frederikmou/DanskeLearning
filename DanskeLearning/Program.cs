@@ -28,7 +28,7 @@ builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 builder.Services.AddScoped<IArticlesService,  ArticlesService>();
-builder.Services.AddScoped<IMyGrowthService, MyGrowthHttp>();
+builder.Services.AddScoped<IMyGrowthService, MyGrowthService>();
 
 
 

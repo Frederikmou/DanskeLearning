@@ -79,7 +79,7 @@ public class MyGrowthRepo : IMyGrowthRepo
        nykompetence,
        motivation,
        trivsel,
-       answertext
+       answertext,
        answerdate
     FROM mygrowth
     WHERE userid = @userid

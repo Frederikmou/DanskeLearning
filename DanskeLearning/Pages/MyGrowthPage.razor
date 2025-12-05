@@ -3,6 +3,7 @@
 @using DanskeLearning.Services.MyGrowthService
 @using DanskeLearning.Services.UserSessionService
 @using Microsoft.AspNetCore.Components.Forms
+@using System.Linq;
 @inject IMyGrowthService MyGrowthService
 @inject IUserSessionService UserSession
 
@@ -46,7 +47,8 @@
 <button class="btn btn-primary mt-3" @onclick="Save">Gem</button>
 
 @code {
-    private MyGrowth growth = new MyGrowth();   
+    private MyGrowth growth = new MyGrowth();
+    private List<MyGrowthAnswers> history = new();
     
     protected override async Task OnInitializedAsync()
     {
@@ -60,14 +62,29 @@
         }
         
         growth.userId     = UserSession.CurrentUser.UserId;
-        growth.month      = DateTime.Now.Month;
         growth.answerDate = DateTime.Now;
         growth.answerId   = 0;
         growth.questionId = 0;
+
+        await LoadHistory();
     }
 
+    private async Task LoadHistory()
+    {
+        if (UserSession.CurrentUser is null)
+            return;
+        var userId = UserSession.CurrentUser.UserId;
+
+        var result = await MyGrowthService.GetByUserAsync(userId);
+
+        history = result
+            .OrderByDescending(a => a.AnswerDate)
+            .ToList();
+    }
     private async Task Save()
     {
-        await MyGrowthService.CreateAsync(growth);
+    await MyGrowthService.CreateAsync(growth);
+
+    await LoadHistory();
     }
 }
