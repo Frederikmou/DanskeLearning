@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Server.Repositories.MyGrowthRepo;
@@ -21,5 +23,12 @@ public class MyGrowthController : ControllerBase
     {
         await _repo.CreateAsync(growth);
         return Ok();
+    }
+
+    [HttpGet("User/{userId:guid}")]
+    public async Task<ActionResult<List<MyGrowthAnswers>>> GetByUserAsync(Guid userId)
+    {
+        var answers = await _repo.GetByUserAsync(userId);
+        return Ok(answers);
     }
 }

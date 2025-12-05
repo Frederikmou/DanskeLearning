@@ -1,14 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Core.Models;                     
 
 namespace DanskeLearning.Services.MyGrowthService;
 
-public class MyGrowthHttp : IMyGrowthService
+public class MyGrowthServiceHttp : IMyGrowthService
 {
     private readonly HttpClient _httpClient;
+    private const string BaseUrl = "api/mygrowth";
 
-    public MyGrowthHttp(HttpClient httpClient)
+    public MyGrowthServiceHttp(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }

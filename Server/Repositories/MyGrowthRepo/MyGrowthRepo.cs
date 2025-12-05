@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Core.Models;
 using Microsoft.AspNetCore.Connections;
 using Npgsql;
@@ -21,61 +22,90 @@ public class MyGrowthRepo : IMyGrowthRepo
 
         command.CommandText = @"
         INSERT INTO mygrowth
-        (userid, month, answerdate,
-         fagligudfordring, nykompetence, motivation, trivsel, answertext)
+        (userid, fagligudfordring, nykompetence, motivation, trivsel, answertext)
         VALUES
-        (@userid, @month, @answerdate,
-         @fagligudfordring, @nykompetence, @motivation, @trivsel, @answertext);";
+        (@userid,@fagligudfordring, @nykompetence, @motivation, @trivsel, @answertext);";
 
-        
+
         var userParam = command.CreateParameter();
-        userParam.ParameterName = "userid"; 
+        userParam.ParameterName = "userid";
         userParam.Value = growth.userId;
         command.Parameters.Add(userParam);
 
-      
-        var monthParam = command.CreateParameter();
-        monthParam.ParameterName = "month";
-        monthParam.Value = growth.month;
-        command.Parameters.Add(monthParam);
 
-        
-        var dateParam = command.CreateParameter();
-        dateParam.ParameterName = "answerdate";
-        dateParam.Value = growth.answerDate;
-        command.Parameters.Add(dateParam);
-
-        
         var fagligParam = command.CreateParameter();
-        fagligParam.ParameterName = "fagligudfordring"; // stavet som kolonnen
+        fagligParam.ParameterName = "fagligudfordring";
         fagligParam.Value = (object?)growth.FagligUdfordring ?? DBNull.Value;
         command.Parameters.Add(fagligParam);
 
-        
+
         var nyParam = command.CreateParameter();
         nyParam.ParameterName = "nykompetence";
         nyParam.Value = (object?)growth.NyKompetence ?? DBNull.Value;
         command.Parameters.Add(nyParam);
 
-        
+
         var motParam = command.CreateParameter();
         motParam.ParameterName = "motivation";
         motParam.Value = (object?)growth.Motivation ?? DBNull.Value;
         command.Parameters.Add(motParam);
 
-        
+
         var trivselParam = command.CreateParameter();
         trivselParam.ParameterName = "trivsel";
         trivselParam.Value = (object?)growth.Trivsel ?? DBNull.Value;
         command.Parameters.Add(trivselParam);
 
-        
+
         var answerTextParam = command.CreateParameter();
         answerTextParam.ParameterName = "answertext";
         answerTextParam.Value = (object?)growth.answerText ?? DBNull.Value;
         command.Parameters.Add(answerTextParam);
 
         await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task<List<MyGrowthAnswers>> GetByUserAsync(Guid userId)
+    {
+        var result = new List<MyGrowthAnswers>();
+
+        await using var dbConnection = new NpgsqlConnection(connectionString);
+        await dbConnection.OpenAsync();
+
+        await using var command = dbConnection.CreateCommand();
+        command.CommandText = @"
+    SELECT userid,
+       fagligudfordring,
+       nykompetence,
+       motivation,
+       trivsel,
+       answertext
+       answerdate
+    FROM mygrowth
+    WHERE userid = @userid
+    ORDER BY answerdate DESC;";
+
+        var userParam = command.CreateParameter();
+        userParam.ParameterName = "userid";
+        userParam.Value = userId;
+        command.Parameters.Add(userParam);
+
+        await using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            result.Add(new MyGrowthAnswers()
+            {
+                UserId = reader.GetGuid(0),
+                FagligUdfordring = reader.IsDBNull(1) ? null : reader.GetString(1),
+                NyKompetence = reader.IsDBNull(2) ? null : reader.GetString(2),
+                Motivation = reader.IsDBNull(3) ? null : reader.GetString(3),
+                Trivsel = reader.IsDBNull(4) ? null : reader.GetString(4),
+                AnswerText = reader.IsDBNull(5) ? null : reader.GetString(5),
+                AnswerDate = reader.GetDateTime(6)
+            });
+        }
+
+        return result;
     }
 }
 
@@ -96,34 +126,5 @@ public class MyGrowthRepo : IMyGrowthRepo
 
 
 
-/* command.Commandtext = @"
-INSERT INTO mygrowth
-(userid, month, answertext, answerdate, answerid, questionid,
-fagligudfordring, nykompetence, motivation, trivsel)
-VALUES
-(@userid, @month, @answertext, @answerdate, @answerid, @questionid,
-@faglig, @nykomp, @motivation, @trivsel);";
-
-Console.WriteLine(command.Commandtext);
-
-const string sql */
 
 
-
-
-
-             /*await using var command = dbConnection.CreateCommand();
-             command.CommandText = sql;
-
-             command.Parameters.AddWithValue("userid", growth.userId);
-             command.Parameters.AddWithValue("month", growth.month);
-             command.Parameters.AddWithValue("answertext", (object?)growth.answerText ?? DBNull.Value);
-             command.Parameters.AddWithValue("answerdate", growth.answerDate);
-             command.Parameters.AddWithValue("answerid", growth.answerId);
-             command.Parameters.AddWithValue("questionid", growth.questionId);
-             command.Parameters.AddWithValue("faglig", (object?)growth.FagligUdfordring ?? DBNull.Value);
-             command.Parameters.AddWithValue("nykomp", (object?)growth.NyKompetence ?? DBNull.Value);
-             command.Parameters.AddWithValue("motivation", (object?)growth.Motivation ?? DBNull.Value);
-             command.Parameters.AddWithValue("trivsel", (object?)growth.Trivsel ?? DBNull.Value);
-
-             await command.ExecuteNonQueryAsync(); */
