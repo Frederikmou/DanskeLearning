@@ -7,44 +7,51 @@
 @inject IUserSessionService UserSession
 @inject NavigationManager navmanager
 
-<h3>My Growth</h3>
+<div class="mygrowth-wrapper">
 
-<h3>1. Hvilket fagligt område har udfordret dig mest i denne måned, og hvad lærte du af det?</h3>
-<div class="col col-md-6 border-black">
-    <label>
-        <InputText id="answerText1" class="form-control" @bind-Value="growth.FagligUdfordring"></InputText>
-    </label>
+    <h1 class="mygrowth-title">MyGrowth</h1>
+    
+        <div class="questions-container">
+       
+            <div class="question-item">
+                <p>1. Hvilket fagligt område har udfordret dig mest i denne måned, og hvad lærte du af det?</p>
+                <InputTextArea @bind-Value="growth.FagligUdfordring"
+                               class="answer-box"
+                               maxlength="500"/>
+            </div>
+
+            <div class="question-item">
+                <p>2. Hvilken ny viden eller kompetence føler du dig mere komfortabel i nu, end du gjorde i sidste måned?</p>
+                <InputTextArea @bind-Value="growth.NyKompetence"
+                               class="answer-box"
+                               maxlength="500"/>
+            </div>
+
+            <div class="question-item">
+                <p>3. Hvad har motiveret dig mest i dit arbejde den seneste tid? Og hvorfor?</p>
+                <InputTextArea @bind-Value="growth.Motivation"
+                               class="answer-box"
+                               maxlength="500"/>
+            </div>
+
+            <div class="question-item">
+                <p>4. Hvordan har din trivsel på dit arbejde været den seneste måned? (energi, overskud, motivation eller lignende)</p>
+                <InputTextArea @bind-Value="growth.Trivsel"
+                               class="answer-box"
+                               maxlength="500"/>
+            </div>
+
+            <div class="question-item">
+                <p>5. Hvad vil du gerne fokusere på i den kommende måned for at styrke din faglige eller personlige udvikling?</p>
+                <InputTextArea @bind-Value="growth.answerText"
+                               class="answer-box"
+                               maxlength="500"/>
+            </div>
+        </div>
+
+    <button class="save-btn" @onclick="Save">Gem</button>
+
 </div>
-
-<h3>2. Hvilken ny viden eller kompetence føler du dig mere komfortabel i nu, end du gjorde i sidste måned?</h3>
-<div class="col col-md-6 border-black">
-    <label>
-        <InputText id="answerText2" class="form-control" @bind-Value="growth.NyKompetence"></InputText>
-    </label>
-</div>
-
-<h3>3. Hvad har motiveret dig mest i dit arbejde den seneste tid? Og hvorfor?</h3>
-<div class="col col-md-6 border-black">
-    <label>
-        <InputText id="answerText3" class="form-control" @bind-Value="growth.Motivation"></InputText>
-    </label>
-</div>
-
-<h3>4. Hvordan har din trivsel på dit arbejde været den seneste måned? (energi, overskud, motivation eller lignende)</h3>
-<div class="col col-md-6 border-black">
-    <label>
-        <InputText id="answerText4" class="form-control" @bind-Value="growth.Trivsel"></InputText>
-    </label>
-</div>
-
-<h3>5. Hvad vil du gerne fokusere på i den kommende måned for at styrke din faglige eller personlige udvikling?</h3>
-<div class="col col-md-6 border-black">
-    <label>
-        <InputText id="answerText5" class="form-control" @bind-Value="growth.answerText"></InputText>
-    </label>
-</div>
-
-<button class="btn btn-primary mt-3" @onclick="Save">Gem</button>
 
 @code {
     private MyGrowth growth = new MyGrowth();   
@@ -56,7 +63,6 @@
 
         if (UserSession.CurrentUser is null)
         {
-            
             return;
         }
         
