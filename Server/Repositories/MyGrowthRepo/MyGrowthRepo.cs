@@ -77,4 +77,9 @@ public class MyGrowthRepo : IMyGrowthRepo
 
         await command.ExecuteNonQueryAsync();
     }
+
+    public Task<List<MyGrowth>> GetPreviousAsync(MyGrowth userId)
+    {
+        throw new NotImplementedException();
+    }
 }

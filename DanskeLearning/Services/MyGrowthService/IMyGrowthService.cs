@@ -7,4 +7,6 @@ public interface IMyGrowthService
 {
     
     Task CreateAsync(MyGrowth growth);
+    
+    Task<List<MyGrowth>> GetPreviousAsync(string userId);
 }
