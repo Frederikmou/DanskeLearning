@@ -22,4 +22,11 @@ public class MyGrowthController : ControllerBase
         await _repo.CreateAsync(growth);
         return Ok();
     }
+
+    [HttpGet("{userId}")]
+    public async Task<IActionResult> GetPreviousAsync(Guid userId)
+    {
+        var results = await _repo.GetPreviousAsync(userId);
+        return Ok(results);
+    }
 }

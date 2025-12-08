@@ -1,6 +1,10 @@
 ﻿@using Components
 @using Core.Models
+@using Services.UserSessionService
 @using DanskeLearning.Components
+@using DanskeLearning.Services.MyGrowthService
+@inject IUserSessionService UserSession
+@inject IMyGrowthService MyGrowthService
 @page "/MyGrowthDashboard"
 <h2 class="text-center fw-bold">MyGrowth</h2>
 
@@ -8,7 +12,7 @@
 
 
 <div class="text-wrapper">
-<MyGrowthCheckIn></MyGrowthCheckIn>
+    <MyGrowthCheckIn></MyGrowthCheckIn>
 
     <p class="my-text">MyGrowth: A page dedicated to your
         own reflection as part of Danske Bank.
@@ -20,7 +24,54 @@
         inspire the conversation</p>
 </div>
 
+
 <h3>Previously submitted Check-Ins</h3>
+@if (previousGrowth == null)
+{
+    <p>Loading the shits...</p>
+}
+else if (!previousGrowth.Any())
+{
+    <p>No checkins</p>
+}
+else
+{
+    <ul>
+        @foreach (var p in previousGrowth)
+        {
+            <li>
+                @p.userId | @p.answerDate
+            </li>
+        }
+    </ul>
+}
+
+
+
 @code {
-    private List<MyGrowth> growth;
+    private MyGrowth growth = new MyGrowth();
+
+    private List<MyGrowth> previousGrowth;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSession.InitializeAsync();
+        
+
+        if (UserSession.CurrentUser == null)
+        {
+            return;
+        }
+        
+        growth.userId     = UserSession.CurrentUser.UserId;
+        growth.month      = DateTime.Now.Month;
+        growth.answerDate = DateTime.Now;
+        growth.answerId   = 0;
+        growth.questionId = 0;
+
+        previousGrowth = await MyGrowthService.GetPreviousAsync(growth.userId);
+    }
+    }
+
+
 }

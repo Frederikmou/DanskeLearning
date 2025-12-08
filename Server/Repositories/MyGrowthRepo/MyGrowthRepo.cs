@@ -77,4 +77,47 @@ public class MyGrowthRepo : IMyGrowthRepo
 
         await command.ExecuteNonQueryAsync();
     }
+
+    public async Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
+    {
+        var result = new List<MyGrowth>();
+
+        await using (var dbConnection = new NpgsqlConnection(connectionString))
+        {
+            await dbConnection.OpenAsync();
+            var command = dbConnection.CreateCommand();
+            command.CommandText = "select * from mygrowth where userid = @userid";
+            command.Parameters.AddWithValue("@userid", userId);
+
+            await using (var reader = command.ExecuteReader())
+            {
+                while (await reader.ReadAsync())
+                {
+                    var id = reader.GetString(0);
+                    var month = reader.GetInt32(1);
+                    var answerDate = reader.GetDateTime(2);
+                    var fagligudfordring = reader.GetString(3);
+                    var nykompetence = reader.GetString(4);
+                    var motivation = reader.GetString(5);
+                    var trivsel = reader.GetString(6);
+                    var answertext = reader.GetString(7);
+
+                    MyGrowth growth = new MyGrowth
+                    {
+                        userId = new Guid(id),
+                        month = month,
+                        answerDate = answerDate,
+                        FagligUdfordring = fagligudfordring,
+                        NyKompetence = nykompetence,
+                        Motivation = motivation,
+                        Trivsel = trivsel,
+                        answerText = answertext
+                    };
+                    result.Add(growth);
+                }
+            }
+        }
+
+        return result;
+    }
 }

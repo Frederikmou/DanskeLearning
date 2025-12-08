@@ -15,7 +15,13 @@ public class MyGrowthHttp : IMyGrowthService
 
     public async Task CreateAsync(MyGrowth growth)   
     {
-        var response = await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
+            var response = await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
         response.EnsureSuccessStatusCode();
-    }   
+    }
+
+    public async Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
+    {
+        return await _httpClient.GetFromJsonAsync<List<MyGrowth>>($"api/mygrowth/{userId}");
+        
+    }
 }
