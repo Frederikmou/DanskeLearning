@@ -63,8 +63,6 @@
         
         growth.userId     = UserSession.CurrentUser.UserId;
         growth.answerDate = DateTime.Now;
-        growth.answerId   = 0;
-        growth.questionId = 0;
 
         await LoadHistory();
     }

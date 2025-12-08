@@ -11,13 +11,8 @@ public class MyGrowth
     public DateTime answerDate { get; set; } = DateTime.Now;
     
     
-    
-    public int answerId { get; set; }
-    public int questionId { get; set; }
-    
-    
     [Column("answertext")]
-        public string? answerText { get; set; } 
+    public string? answerText { get; set; } 
     
     
     [Column("fagligudfordring")]
