@@ -6,6 +6,6 @@ namespace Server.Repositories.MyGrowthRepo
     {
         Task CreateAsync(MyGrowth growth);
 
-       Task<List<MyGrowth>> GetPreviousAsync(Guid userId);
+       Task<List<MyGrowth>> GetPreviousAsync(MyGrowth userId);
     }
 }
