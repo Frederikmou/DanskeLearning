@@ -19,7 +19,7 @@ public class MyGrowthHttp : IMyGrowthService
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task<List<MyGrowth>> GetPreviousAsync(string userId)
+    public async Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
     {
         return await _httpClient.GetFromJsonAsync<List<MyGrowth>>($"api/mygrowth/{userId}");
         
