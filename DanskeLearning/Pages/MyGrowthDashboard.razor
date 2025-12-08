@@ -1,0 +1,77 @@
+﻿@using Components
+@using Core.Models
+@using Services.UserSessionService
+@using DanskeLearning.Components
+@using DanskeLearning.Services.MyGrowthService
+@inject IUserSessionService UserSession
+@inject IMyGrowthService MyGrowthService
+@page "/MyGrowthDashboard"
+<h2 class="text-center fw-bold">MyGrowth</h2>
+
+<h3>New Monthly Ckeck-In</h3>
+
+
+<div class="text-wrapper">
+    <MyGrowthCheckIn></MyGrowthCheckIn>
+
+    <p class="my-text">MyGrowth: A page dedicated to your
+        own reflection as part of Danske Bank.
+        This is your own personal area, and is
+        created to make it easier for you to
+        reflect on the past month. When it’s
+        time for your annual Check-In with your
+        closest leader, you have something to
+        inspire the conversation</p>
+</div>
+
+
+<h3>Previously submitted Check-Ins</h3>
+@if (previousGrowth == null)
+{
+    <p>Loading the shits...</p>
+}
+else if (!previousGrowth.Any())
+{
+    <p>No checkins</p>
+}
+else
+{
+    <ul>
+        @foreach (var p in previousGrowth)
+        {
+            <li>
+                @p.UserId | @p.AnswerDate
+            </li>
+        }
+    </ul>
+}
+
+
+
+@code {
+    private MyGrowth growth = new MyGrowth();
+
+    private List<MyGrowthAnswers> previousGrowth;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UserSession.InitializeAsync();
+        
+
+        if (UserSession.CurrentUser == null)
+        {
+            return;
+        }
+        
+        growth.userId     = UserSession.CurrentUser.UserId;
+        growth.month      = DateTime.Now.Month;
+        growth.answerDate = DateTime.Now;
+        growth.answerId   = 0;
+        growth.questionId = 0;
+
+        previousGrowth = await MyGrowthService.GetByUserAsync(growth.userId);
+    }
+}
+
+
+}
