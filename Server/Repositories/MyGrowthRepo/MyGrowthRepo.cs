@@ -21,19 +21,21 @@ public class MyGrowthRepo : IMyGrowthRepo
 
         command.CommandText = @"
         INSERT INTO mygrowth
-        (checkinid, userid, answertext, answerdate,
+        (userid, answertext, answerdate,
          fagligudfordring, nykompetence, motivation, trivsel)
         VALUES
-        (@checkinid, @userid, @answertext, @answerdate,
+        (@userid, @answertext, @answerdate,
          @fagligudfordring, @nykompetence, @motivation, @trivsel);";
+
 
         
         
-        var checkinParam = command.CreateParameter();
+        
+       /* var checkinParam = command.CreateParameter();
         checkinParam.ParameterName = "checkinid";
         checkinParam.Value = growth.checkinId;
         command.Parameters.Add(checkinParam);
-        
+        */ 
         var userParam = command.CreateParameter();
         userParam.ParameterName = "userid"; 
         userParam.Value = growth.userId;
@@ -77,8 +79,49 @@ public class MyGrowthRepo : IMyGrowthRepo
         await command.ExecuteNonQueryAsync();
     }
 
-    public Task<List<MyGrowth>> GetPreviousAsync(MyGrowth userId)
+    public async Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
     {
-        throw new NotImplementedException();
+        var result = new List<MyGrowth>();
+
+        using (var dbConnection = new NpgsqlConnection(connectionString))
+        {
+            await dbConnection.OpenAsync();
+
+            var command = dbConnection.CreateCommand();
+            command.CommandText = @"SELECT checkinid, userid, answertext, answerdate, 
+            fagligudfordring, nykompetence, motivation, 
+            trivsel from mygrowth where userid = @userId";
+            command.Parameters.AddWithValue("@userId", userId);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    var checkinid = reader.GetInt32(0);
+                    var Id =  reader.GetGuid(1);
+                    var answerText =  reader.IsDBNull(2)? null: reader.GetString(2);
+                    var answerDate = reader.GetDateTime(3);
+                    var fagligUdfordring = reader.IsDBNull(4)? null: reader.GetString(4);
+                    var nykompetence = reader.IsDBNull(5)? null: reader.GetString(5);
+                    var motivation = reader.IsDBNull(6)? null: reader.GetString(6);
+                    var trivsel = reader.IsDBNull(7)? null: reader.GetString(7);
+
+                    MyGrowth growth = new MyGrowth()
+                    {
+                        checkinId = checkinid,
+                        userId = Id,
+                        answerText = answerText,
+                        answerDate = answerDate,
+                        FagligUdfordring = fagligUdfordring,
+                        NyKompetence = nykompetence,
+                        Motivation = motivation,
+                        Trivsel = trivsel
+                    };
+                    result.Add(growth);
+                }
+
+                return result;
+            }
+        }
     }
 }

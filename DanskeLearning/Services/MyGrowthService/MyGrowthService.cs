@@ -18,7 +18,7 @@ namespace DanskeLearning.Services.MyGrowthService
             await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
         }
 
-        public Task<List<MyGrowth>> GetPreviousAsync(string userId)
+        public Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
         {
             throw new NotImplementedException();
         }

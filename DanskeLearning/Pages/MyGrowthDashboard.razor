@@ -1,6 +1,10 @@
 ﻿@using Components
 @using Core.Models
 @using DanskeLearning.Components
+@using DanskeLearning.Services.MyGrowthService
+@using DanskeLearning.Services.UserSessionService
+@inject IMyGrowthService MGHttp
+@inject IUserSessionService UserSession
 @page "/MyGrowthDashboard"
 <h2 class="text-center fw-bold">MyGrowth</h2>
 
@@ -21,6 +25,28 @@
 </div>
 
 <h3>Previously submitted Check-Ins</h3>
+@if (growth.Count == 0)
+{
+    <p>No checkins found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var g in growth)
+        {
+            <li>@g.answerDate.ToShortDateString() - @g.answerText</li>
+        }
+    </ul>
+}
+
 @code {
-    private List<MyGrowth> growth;
+    private List<MyGrowth> growth = new List<MyGrowth>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userId = UserSession.CurrentUser.UserId;
+
+        growth = await MGHttp.GetPreviousAsync(userId) ?? new List<MyGrowth>();
+    }
+
 }
