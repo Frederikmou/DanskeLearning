@@ -21,24 +21,29 @@ public class MyGrowthRepo : IMyGrowthRepo
 
         command.CommandText = @"
         INSERT INTO mygrowth
-        (userid, month, answerdate,
-         fagligudfordring, nykompetence, motivation, trivsel, answertext)
+        (checkinid, userid, answertext, answerdate,
+         fagligudfordring, nykompetence, motivation, trivsel)
         VALUES
-        (@userid, @month, @answerdate,
-         @fagligudfordring, @nykompetence, @motivation, @trivsel, @answertext);";
+        (@checkinid, @userid, @answertext, @answerdate,
+         @fagligudfordring, @nykompetence, @motivation, @trivsel);";
 
+        
+        
+        var checkinParam = command.CreateParameter();
+        checkinParam.ParameterName = "checkinid";
+        checkinParam.Value = growth.checkinId;
+        command.Parameters.Add(checkinParam);
         
         var userParam = command.CreateParameter();
         userParam.ParameterName = "userid"; 
         userParam.Value = growth.userId;
         command.Parameters.Add(userParam);
-
-      
-        var monthParam = command.CreateParameter();
-        monthParam.ParameterName = "month";
-        monthParam.Value = growth.month;
-        command.Parameters.Add(monthParam);
-
+        
+        var answerTextParam = command.CreateParameter();
+        answerTextParam.ParameterName = "answertext";
+        answerTextParam.Value = (object?)growth.answerText ?? DBNull.Value;
+        command.Parameters.Add(answerTextParam);
+        
         
         var dateParam = command.CreateParameter();
         dateParam.ParameterName = "answerdate";
@@ -68,12 +73,6 @@ public class MyGrowthRepo : IMyGrowthRepo
         trivselParam.ParameterName = "trivsel";
         trivselParam.Value = (object?)growth.Trivsel ?? DBNull.Value;
         command.Parameters.Add(trivselParam);
-
-        
-        var answerTextParam = command.CreateParameter();
-        answerTextParam.ParameterName = "answertext";
-        answerTextParam.Value = (object?)growth.answerText ?? DBNull.Value;
-        command.Parameters.Add(answerTextParam);
 
         await command.ExecuteNonQueryAsync();
     }
