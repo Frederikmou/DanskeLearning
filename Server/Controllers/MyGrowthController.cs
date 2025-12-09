@@ -29,4 +29,12 @@ public class MyGrowthController : ControllerBase
         var results = await _repo.GetPreviousAsync(userId);
         return Ok(results);
     }
+
+    [HttpGet("entry/{checkinId}")]
+
+    public async Task<IActionResult> GeEntryByIdAsync(int checkinId)
+    {
+        var results = await _repo.GetEntryByIdAsync(checkinId);
+        return Ok(results);
+    }
 }

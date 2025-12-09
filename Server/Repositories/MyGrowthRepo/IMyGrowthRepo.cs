@@ -8,6 +8,6 @@ namespace Server.Repositories.MyGrowthRepo
 
        Task<List<MyGrowth>> GetPreviousAsync(Guid userId);
        
-       Task<List<MyGrowth>> GeEntryByIdAsync(int chekinid);
+       Task<List<MyGrowth>> GetEntryByIdAsync(int chekinid);
     }
 }
