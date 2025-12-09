@@ -1,6 +1,53 @@
-﻿@page "/MyGrowthEntries"
-<h3>MyGrowthEntries</h3>
+﻿@page "/MyGrowthEntries/{Year:int}/{Month:int}"
+@using Core.Models
+@using DanskeLearning.Services.MyGrowthService
+@using DanskeLearning.Services.UserSessionService
+@inject IMyGrowthService MGHttp
+@inject IUserSessionService UserSession
+
+<h3>MyGrowth Entries</h3>
+
+@if (checkIns == null || checkIns.Count == 0)
+{
+    <p>No check-ins for this month.</p>
+}
+else
+{
+    <div class="checkin-list">
+        @foreach (var c in checkIns)
+        {
+            <div class="checkin-card">
+                <h4>@c.answerDate.ToShortDateString()</h4>
+                
+                <p><strong>Faglig udfordring:</strong> @c.FagligUdfordring</p>
+                <p><strong>Ny kompetence:</strong> @c.NyKompetence</p>
+                <p><strong>Motivation:</strong> @c.Motivation</p>
+                <p><strong>Trivsel:</strong> @c.Trivsel</p>
+                <p><strong>Øvrige refleksioner:</strong> @c.answerText</p>
+            </div>
+        }
+    </div>
+}
 
 @code {
-    
+    [Parameter] public int Year { get; set; }
+    [Parameter] public int Month { get; set; }
+
+    private List<MyGrowth> checkIns = new();
+
+    private string Title =>
+        new DateTime(Year, Month, 1).ToString("MMMM yyyy") + " - Check-Ins";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userId = UserSession.CurrentUser.UserId;
+
+        var all = await MGHttp.GetPreviousAsync(userId) ?? new List<MyGrowth>();
+
+        checkIns = all
+            .Where(x => x.answerDate.Year == Year && x.answerDate.Month == Month)
+            .OrderBy(x => x.answerDate)
+            .ToList();
+    }
+
 }

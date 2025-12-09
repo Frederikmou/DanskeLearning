@@ -1,9 +1,22 @@
 ﻿@using Core.Models
 @inject NavigationManager NavManager
-<h3>MyGrowthDashboardComponent</h3>
 
-<button></button>
+
+<button class="subject-button month-button" @onclick="NavigateToMonth">
+    @MonthName
+</button>
 
 @code {
     [Parameter] public MyGrowth growth { get; set; }
+
+    private string MonthName => growth?.answerDate.ToString("MMMM") ?? string.Empty;
+
+    private void NavigateToMonth()
+    {
+        var year = growth.answerDate.Year;
+        var month = growth.answerDate.Month;
+        
+        NavManager.NavigateTo($"MyGrowthEntries/{year}/{month}");
+    }
+    
 }

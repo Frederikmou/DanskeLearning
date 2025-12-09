@@ -25,28 +25,37 @@
 </div>
 
 <h3>Previously submitted Check-Ins</h3>
+
 @if (growth.Count == 0)
 {
     <p>No checkins found.</p>
 }
 else
 {
-    <ul>
-        @foreach (var g in growth)
+    <div class="subject-buttons-container">
+        @foreach (var g in monthlyGrowth)
         {
-            <li>@g.answerDate.ToShortDateString()</li>
+            <MyGrowthDashboardComponent growth="@g"/>
         }
-    </ul>
+    </div>
 }
 
 @code {
     private List<MyGrowth> growth = new List<MyGrowth>();
+
+    private List<MyGrowth> monthlyGrowth = new();
 
     protected override async Task OnInitializedAsync()
     {
         var userId = UserSession.CurrentUser.UserId;
 
         growth = await MGHttp.GetPreviousAsync(userId) ?? new List<MyGrowth>();
+
+        monthlyGrowth = growth
+            .GroupBy(g => new { g.answerDate.Year, g.answerDate.Month })
+            .Select(g => g.First())
+            .OrderBy(g => g.answerDate)
+            .ToList();
     }
 
 }
