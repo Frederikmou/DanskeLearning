@@ -24,4 +24,9 @@ public class MyGrowthHttp : IMyGrowthService
         return await _httpClient.GetFromJsonAsync<List<MyGrowth>>($"api/mygrowth/{userId}");
         
     }
+
+    public async Task<List<MyGrowth>> GeEntryByIdAsync(int chekinid)
+    {
+        return await _httpClient.GetFromJsonAsync<List<MyGrowth>>($"api/mygrowth/{chekinid}");
+    }
 }

@@ -1,7 +1,9 @@
-﻿<h3>MyGrowthDashboardComponent</h3>
+﻿@using Core.Models
+@inject NavigationManager NavManager
+<h3>MyGrowthDashboardComponent</h3>
 
 <button></button>
 
 @code {
-    
+    [Parameter] public MyGrowth growth { get; set; }
 }

@@ -27,15 +27,13 @@ public class MyGrowthRepo : IMyGrowthRepo
         (@userid, @answertext, @answerdate,
          @fagligudfordring, @nykompetence, @motivation, @trivsel);";
 
-
         
-        
-        
-       /* var checkinParam = command.CreateParameter();
-        checkinParam.ParameterName = "checkinid";
-        checkinParam.Value = growth.checkinId;
+       /* var checkinParam = command.CreateParameter(); -> til gruppe. Dette er en serial i vores database
+        checkinParam.ParameterName = "checkinid";           hvilket betyder at den genererer et Id selv.
+        checkinParam.Value = growth.checkinId;              Ergo ingen "insert into". Ellers kommer der fejl. 
         command.Parameters.Add(checkinParam);
         */ 
+       
         var userParam = command.CreateParameter();
         userParam.ParameterName = "userid"; 
         userParam.Value = growth.userId;

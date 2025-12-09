@@ -72,10 +72,9 @@
         }
         
         growth.userId     = UserSession.CurrentUser.UserId;
-        growth.month      = DateTime.Now.Month;
         growth.answerDate = DateTime.Now;
         growth.answerId   = 0;
-        growth.questionId = 0;
+        
     }
 
     private async Task Save()

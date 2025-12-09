@@ -22,5 +22,10 @@ namespace DanskeLearning.Services.MyGrowthService
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<MyGrowth>> GeEntryByIdAsync(int chekinid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

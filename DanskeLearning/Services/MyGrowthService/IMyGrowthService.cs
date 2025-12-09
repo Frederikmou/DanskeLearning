@@ -9,4 +9,6 @@ public interface IMyGrowthService
     Task CreateAsync(MyGrowth growth);
     
     Task<List<MyGrowth>> GetPreviousAsync(Guid userId);
+    
+    Task<List<MyGrowth>> GeEntryByIdAsync(int chekinid);
 }
