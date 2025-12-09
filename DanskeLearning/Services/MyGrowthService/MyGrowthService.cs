@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Core.Models;
 
 namespace DanskeLearning.Services.MyGrowthService
@@ -7,6 +6,7 @@ namespace DanskeLearning.Services.MyGrowthService
     public class MyGrowthService : IMyGrowthService
     {
         private readonly HttpClient _httpClient;
+        private const string BaseUrl = "api/mygrowth";
 
         public MyGrowthService(HttpClient httpClient)
         {
@@ -15,17 +15,23 @@ namespace DanskeLearning.Services.MyGrowthService
 
         public async Task CreateAsync(MyGrowth growth)
         {
-            await _httpClient.PostAsJsonAsync("api/mygrowth", growth);
+            await _httpClient.PostAsJsonAsync(BaseUrl, growth);
         }
-
-        public Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
+        
+        public async Task<List<MyGrowth>> GetPreviousAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetFromJsonAsync<List<MyGrowth>>(
+                $"{BaseUrl}/{userId}");
+
+            return result ?? new List<MyGrowth>();
         }
-
-        public Task<List<MyGrowth>> GeEntryByIdAsync(int chekinid)
+        
+        public async Task<List<MyGrowth>> GetEntryByIdAsync(int checkinId)
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetFromJsonAsync<List<MyGrowth>>(
+                $"{BaseUrl}/entry/{checkinId}");
+
+            return result ?? new List<MyGrowth>();
         }
     }
 }

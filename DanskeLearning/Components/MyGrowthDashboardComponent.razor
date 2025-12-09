@@ -1,22 +1,15 @@
 ﻿@using Core.Models
-@inject NavigationManager NavManager
+@inject NavigationManager navManager
 
-
-<button class="subject-button month-button" @onclick="NavigateToMonth">
-    @MonthName
+<button class="subject-button month-button" @onclick="NavigateToEntry">
+    @growth.answerDate.ToString("MMMM yyyy")
 </button>
 
 @code {
     [Parameter] public MyGrowth growth { get; set; }
 
-    private string MonthName => growth?.answerDate.ToString("MMMM") ?? string.Empty;
-
-    private void NavigateToMonth()
+    private void NavigateToEntry()
     {
-        var year = growth.answerDate.Year;
-        var month = growth.answerDate.Month;
-        
-        NavManager.NavigateTo($"MyGrowthEntries/{year}/{month}");
+        navManager.NavigateTo($"/MyGrowthEntries/single/{growth.checkinId}");
     }
-    
 }

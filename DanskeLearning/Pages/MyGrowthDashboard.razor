@@ -33,7 +33,7 @@
 else
 {
     <div class="subject-buttons-container">
-        @foreach (var g in monthlyGrowth)
+        @foreach (var g in growth)
         {
             <MyGrowthDashboardComponent growth="@g"/>
         }
@@ -43,19 +43,11 @@ else
 @code {
     private List<MyGrowth> growth = new List<MyGrowth>();
 
-    private List<MyGrowth> monthlyGrowth = new();
-
     protected override async Task OnInitializedAsync()
     {
-        var userId = UserSession.CurrentUser.UserId;
-
+        Guid userId = UserSession.CurrentUser.UserId;
         growth = await MGHttp.GetPreviousAsync(userId) ?? new List<MyGrowth>();
-
-        monthlyGrowth = growth
-            .GroupBy(g => new { g.answerDate.Year, g.answerDate.Month })
-            .Select(g => g.First())
-            .OrderBy(g => g.answerDate)
-            .ToList();
     }
 
 }
+
