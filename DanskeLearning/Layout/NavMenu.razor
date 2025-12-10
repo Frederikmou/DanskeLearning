@@ -2,33 +2,67 @@
 @inject NavigationManager NavManager
 @inject IUserSessionService UserSession
 
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">DanskeLearning</a>
 
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
+@if (UserSession.CurrentUser == null)
+{
+    Console.WriteLine("nothing to show");
+    <div class="top-row ps-3 navbar navbar-dark">
+                                                     <div class="container-fluid">
+    <a class="navbar-brand" href="">DanskeLearning</a>
+
+    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
+}
+else if (UserSession.CurrentUser.role.Equals("admin", StringComparison.OrdinalIgnoreCase))
+{
+    Console.WriteLine("User is admin");
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">DanskeLearning</a>
 
-<div class="@NavMenuCssClass nav-scrollable">
-    <nav class="nav flex-column">
+            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+}
+else
+{
+    
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">DanskeLearning</a>
 
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/Dashboard"))">
-            Dashboard
-        </button>
+            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="@NavMenuCssClass nav-scrollable">
+        <nav class="nav flex-column">
+
+            <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/Dashboard"))">
+                Dashboard
+            </button>
         
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/MyGrowthDashboard"))">
-            MyGrowth
-        </button>
+            <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/MyGrowthDashboard"))">
+                MyGrowth
+            </button>
         
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/LearningCatalog"))">
-            LearningCatalogue
-        </button>
+            <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/LearningCatalog"))">
+                LearningCatalogue
+            </button>
      
-    </nav>
-</div>
+        </nav>
+    </div>
+}
+
+
+
 
 @code {
     protected override async Task OnInitializedAsync()
