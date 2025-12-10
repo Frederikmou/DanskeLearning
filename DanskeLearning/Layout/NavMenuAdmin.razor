@@ -1,7 +1,17 @@
-@page "/NavMenuAdmin"
-<h3>NavMenuAdmin</h3>
+<nav class="navmenu">
+    <NavLink href="/InformationPageAdmin" Match="NavLinkMatch.All">
+        Dashboard
+    </NavLink>
 
+    <NavLink href="/myteam">
+        MyTeam
+    </NavLink>
 
-@code {
-    
-}
+    <NavLink href="/myemployee">
+        MyEmployee
+    </NavLink>
+
+    <NavLink href="/LearningCatalog">
+        LearningCatalog
+    </NavLink>
+</nav>

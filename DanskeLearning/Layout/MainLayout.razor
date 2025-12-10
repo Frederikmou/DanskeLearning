@@ -4,20 +4,29 @@
 @inject NavigationManager NavManager
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-    
-    <div class="main">
-        
-        <div class="top-row px-4 header-bar">
 
+    @if (UserSession.CurrentUser is not null)
+    {
+        <div class="sidebar">
+            @if (UserSession.CurrentUser.role == "Admin")
+            {
+                <NavMenuAdmin />
+            }
+            else if (UserSession.CurrentUser.role == "user")
+            {
+                <NavMenu />
+            }
+        </div>
+    }
+
+    <div class="main">
+
+        <div class="top-row px-4 header-bar">
             <div class="header-left">
-                <!--plads til tekst -->
+                    DanskeLearning
             </div>
 
             <div class="header-right">
-
                 @if (UserSession.CurrentUser is null)
                 {
                     <button class="login-header-btn"
@@ -27,36 +36,35 @@
                 }
                 else
                 {
-                    <span class="header-username">@UserSession.CurrentUser.firstName</span>
+                    <span class="header-username">
+                        @UserSession.CurrentUser.firstName
+                    </span>
 
-                    <button class="logout-header-btn" @onclick="OnLogoutClicked">
+                    <button class="logout-header-btn"
+                            @onclick="OnLogoutClicked">
                         Log ud
                     </button>
                 }
-
             </div>
-
         </div>
-        
+
         <article class="content px-4">
             @Body
         </article>
 
     </div>
-
 </div>
 
 @code {
     protected override async Task OnInitializedAsync()
     {
-        // Sørg for at UserSession er initialiseret,
-        // så CurrentUser ikke altid er null her.
         await UserSession.InitializeAsync();
+        StateHasChanged();
     }
 
     private async Task OnLogoutClicked()
     {
         await UserSession.LogoutAsync();
-        NavManager.NavigateTo("/LoginPage", true);
+        NavManager.NavigateTo("/", true); //tilbage til Home
     }
 }
