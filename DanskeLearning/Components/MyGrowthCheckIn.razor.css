@@ -17,4 +17,5 @@
 
 .month-box:hover {
     transform: translateY(-3px);
+    background-color: #E8EEF9;
 }

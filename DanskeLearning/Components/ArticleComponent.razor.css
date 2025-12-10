@@ -18,10 +18,11 @@
 
 .article-card:hover {
     background-color: #E8EEF9;
+    transform: translateY(-3px);
 }
 
 .article-card.read {
-    background-color: #aeb4c0;   /* grålig lyseblå */
+    background-color: #aeb4c0; /* grålig lyseblå */
     color: #003366;
 }
 
