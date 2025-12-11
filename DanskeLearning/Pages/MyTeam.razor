@@ -1,37 +1,34 @@
 @page "/MyTeam"
-@using Core.Models
+@using System.Collections.Generic
+@using Core.Models;
+@using DanskeLearning.Services.MyTeamService;
+@inject IMyTeamService MyTeamService
 
-<h3>Customer Supporter</h3>
+<h3>My Team</h3>
 
-@if (teamMembers == null)
+@if (teams == null)
 {
     <p>Loading...</p>
 }
-else if (teamMembers.Count == 0)
+else if (teams.Count == 0)
 {
-    <p>No team members found.</p>
+    <p>You are not assigned to any team..</p>
 }
 else
 {
-    <div class="subject-buttons-container">
-        @foreach (var u in teamMembers)
+    <ul>
+        @foreach (var t in teams)
         {
-            <MyTeamUsersComponent user="@u" />
+            <li>@t.TeamName</li>
         }
-    </div>
+    </ul>
 }
 
 @code {
-    private List<User> teamMembers = new();
+    private List<Team>? teams;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        teamMembers = new List<User>
-        {
-            new User { UserId = Guid.NewGuid(), firstName = "Emma",  lastName = "Johnson", userName = "AD8779" },
-            new User { UserId = Guid.NewGuid(), firstName = "Liam",  lastName = "Carter",  userName = "AF1123" },
-            new User { UserId = Guid.NewGuid(), firstName = "Sophia", lastName = "Martinez", userName = "AB9044" },
-            new User { UserId = Guid.NewGuid(), firstName = "Noah",  lastName = "Bennett", userName = "AE5590" },
-        };
+        teams = await MyTeamService.GetMyTeamsAsync();
     }
 }

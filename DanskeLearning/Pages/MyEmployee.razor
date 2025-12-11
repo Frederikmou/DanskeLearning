@@ -1,5 +1,7 @@
-@page "/MyEmployee/{userId:guid}"
+@page "/MyEmployee"
 @using Core.Models
+@using DanskeLearning.Services.MyEmployeeService;
+@inject IMyEmployeeService MyEmployeeService
 
 <h2 class="text-center fw-bold">Assigning</h2>
 
