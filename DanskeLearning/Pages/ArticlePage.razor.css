@@ -53,11 +53,11 @@
 }
 
 .test-card {
-    width: 4cm;                /* samme størrelse som artikelkort */
+    width: 4cm;
     height: 4cm;
-    background: #F5F7FB;       /* lys blå */
-    color: #003366;            /* samme tekstfarve */
-    border-radius: 12px;
+    background: #F5F7FB;       /* samme lyseblå som testen */
+    color: #003778;            /* samme tekstfarve */
+    border-radius: 12px;       /* samme afrunding */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,8 +65,9 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
+    margin: 30px;
     transition: background-color 0.15s ease;
-    margin: 30px;              /* samme margin som artikelkortene */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .test-card:hover {
