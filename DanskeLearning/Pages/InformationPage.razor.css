@@ -24,7 +24,7 @@
 
 /*selve kortet */
 .info-card {
-    background: #F5F7FB;              /* lys blå som i wireframe */
+    background: #EEF3F8;              /* lys blå som i wireframe */
     border-radius: 16px;
     padding: 1.5rem 1.75rem;
     border: none;
@@ -39,7 +39,7 @@
 
 /*kort-overskrift */
 .info-card h2 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 12px;
     font-size: 18px;
     font-weight: 600;
     color: #003778;
