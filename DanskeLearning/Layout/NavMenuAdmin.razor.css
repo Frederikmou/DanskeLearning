@@ -1,35 +1,27 @@
-.sidebar {
-    background: #003778;
-    width: 220px;
-    min-height: 100vh;
-    padding-top: 1.5rem;
-}
-
-.navmenu-title {
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 0 1.25rem 1.5rem;
-}
-
 .navmenu {
+    background-color: #003778;
+    width: 220px;
+    padding-top: 90px;
+    padding-left: 25px;
     display: flex;
     flex-direction: column;
+    gap: 25px; /*mellemrum mellem knapper */
+    position: fixed; /*lås venstremenu fast */
+    top: 0;
+    left: 0;
 }
 
-.navmenu a {
+.nav-btn {
+    background: none;
+    border: none;
     color: white;
-    text-decoration: none;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.95rem;
-    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: left;
+    cursor: pointer;
+    padding: 5px 0;
 }
 
-.navmenu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.navmenu a.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: 600;
+.nav-btn:hover {
+    opacity: 0.75;
 }

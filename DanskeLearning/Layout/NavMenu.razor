@@ -1,19 +1,22 @@
-﻿<nav class="navmenu">
-    <NavLink href="/InformationPage" Match="NavLinkMatch.All">
+﻿@inject NavigationManager NavManager
+
+<nav class="navmenu">
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/InformationPage"))">
         Dashboard
-    </NavLink>
-
-    <NavLink href="/Dashboard">
+    </button>
+   
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/Dashboard"))">
         MyLearning
-    </NavLink>
-
-    <NavLink href="/MyGrowthDashboard">
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/MyGrowth"))">
         MyGrowth
-    </NavLink>
-
-    <NavLink href="/LearningCatalog">
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/LearningCatalog"))">
         LearningCatalog
-    </NavLink>
+    </button>
+    
 </nav>
 
 
