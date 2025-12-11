@@ -1,0 +1,41 @@
+@page "/MyInformation"
+@inject Services.UserSessionService.IUserSessionService UserSessionService
+
+<h3 class="page-title">MyProfile</h3>
+
+<div class="info-container">
+    
+    @if (UserSessionService.CurrentUser.role == "user")
+    {
+        <div class="info-card-right">
+            <h4>My Information</h4>
+            <p>First name: @UserSessionService.CurrentUser.firstName</p>
+            <p>Last name: @UserSessionService.CurrentUser.lastName</p>
+            <p>A-Number: @UserSessionService.CurrentUser.userName</p>
+            <p>Mail: @UserSessionService.CurrentUser.email</p>
+            <p>Phone: @UserSessionService.CurrentUser.phoneNumber</p>
+            <p>Nearest leader: EMJE</p>
+        </div>
+    
+        <div class="info-card-left">
+            <h4>My Nearest Leader:</h4>
+            <p>First name: Emma Jensen</p>
+            <p>A-Number: AD8779</p>
+            <p>Shortname: EMJE</p>
+            <p>Mail: EMJE@danskebank.dk</p>
+            <p>Phone: 23 33 44 45</p>
+        </div>
+    }
+    else
+    {
+        <div class="card-admin">
+            <h4>My Information</h4>
+            <p>First name: Emma Jensen</p>
+            <p>A-Number: AD8779</p>
+            <p>Shortname: EMJE</p>
+            <p>Mail: EMJE@danskebank.dk</p>
+            <p>Phone: 23 33 44 45</p>
+        </div>
+    }
+    
+</div>

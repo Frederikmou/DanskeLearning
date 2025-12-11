@@ -8,9 +8,10 @@
 /*title */
 .mygrowth-title {
     text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 500;
+    color: #003778;
+    margin-bottom: 25px;
     font-family: "Canvas Sans", "Segoe UI", sans-serif;
 }
 

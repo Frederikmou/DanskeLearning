@@ -1,155 +1,90 @@
 .page {
-    position: relative;
     display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
+    min-height: 100vh;
+    background-color: #f5f7fb;
 }
 
 .sidebar {
-    background-color: #003778;
+    width: 220px;
+    background: #003778;
+    padding-top: 80px; /* plads til header */
+    flex-shrink: 0;
 }
 
-.top-row {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-}
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
-
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
-
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-@media (max-width: 640.98px) {
-    .top-row {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
-
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
-
-    .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
-}
-
-/* Layout grid */
-.page {
-    display: flex;
-}
-
-/* Sidebar stays the same */
-.sidebar {
-    width: 250px;
-}
-
-/* Main area */
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
-/* Top header bar */
 .header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
     background-color: #003778;
-    height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
 }
 
-/* Right side of header */
+/* header venstre side */
+.header-left {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+}
+
+/* header højre side */
 .header-right {
-    margin-left: auto;
     display: flex;
-    gap: 16px;
     align-items: center;
-    margin-right: 10px;
+    gap: 1rem;
 }
 
-/* Font family for header */
-.header-right,
 .login-header-btn,
-.logout-header-btn,
-.header-username {
-    font-family: "Canvas Sans Medium", sans-serif;
-}
-
-/* Login Button */
-.login-header-btn {
-    background-color: #0054F0;
-    color: white;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: opacity 0.15s ease-in-out;
-}
-
-/* Logout Button */
 .logout-header-btn {
-    background-color: #0054F0;
-    color: white;
+    background-color: #0054f0;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    color: white;
     cursor: pointer;
-    font-size: 0.95rem;
-    transition: opacity 0.15s ease-in-out;
+    font-size: 12px;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
 }
 
 .login-header-btn:hover,
 .logout-header-btn:hover {
-    opacity: 0.85;
+    background-color: #0054f0;
 }
 
-.header-username {
+.header-username-btn {
+    background: none;
+    border: none;
     color: white;
-    font-size: 0.95rem;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
 }
+
+.content {
+    padding: 2rem;
+    margin-top: 64px; /* header højde */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+
 

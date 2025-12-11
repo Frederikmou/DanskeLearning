@@ -1,71 +1,23 @@
-﻿@using DanskeLearning.Services.UserSessionService
-@inject NavigationManager NavManager
-@inject IUserSessionService UserSession
+﻿@inject NavigationManager NavManager
 
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">DanskeLearning</a>
-
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass nav-scrollable">
-    <nav class="nav flex-column">
-
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/Dashboard"))">
-            Dashboard
-        </button>
-        
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/MyGrowthDashboard"))">
-            MyGrowth
-        </button>
-        
-        <button class="btn btn-nav mb-2" @onclick="@(() => NavigateOrLogin("/LearningCatalog"))">
-            LearningCatalogue
-        </button>
-     
-    </nav>
-</div>
-
-@code {
-    protected override async Task OnInitializedAsync()
-    {
-        await UserSession.InitializeAsync();
-        UserSession.OnChange += HandleStateChanged;
-    }
+<nav class="navmenu">
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/InformationPage"))">
+        Dashboard
+    </button>
    
-    private void NavigateOrLogin(string targetUrl)
-    {
-        if (UserSession.CurrentUser == null) // ikke logget ind
-        {
-            NavManager.NavigateTo("/LoginPage");
-        }
-        else
-        {
-            NavManager.NavigateTo(targetUrl);
-        }
-    }
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/Dashboard"))">
+        MyLearning
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/MyGrowthDashboard"))">
+        MyGrowth
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/LearningCatalog"))">
+        LearningCatalog
+    </button>
+    
+</nav>
 
-    private void HandleStateChanged()
-    {
-        InvokeAsync(StateHasChanged);
-    }
 
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-    public void Dispose()
-    {
-        UserSession.OnChange -= HandleStateChanged;
-    }
-}
 

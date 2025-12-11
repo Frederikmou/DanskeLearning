@@ -11,16 +11,18 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.15s ease;
     margin: 30px;
+    transition: background-color 0.15s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .article-card:hover {
     background-color: #E8EEF9;
+    transform: translateY(-3px);
 }
 
 .article-card.read {
-    background-color: #aeb4c0;   /* grålig lyseblå */
+    background-color: #aeb4c0; /* grålig lyseblå */
     color: #003366;
 }
 

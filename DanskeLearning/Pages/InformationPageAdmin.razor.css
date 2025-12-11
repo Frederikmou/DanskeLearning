@@ -1,0 +1,65 @@
+/*ydre container til indholdet */
+.info-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+}
+
+/*overskrift "Dashboard" */
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #003778;
+    padding-bottom: 25px;
+}
+
+/*grid med 4 kort (2x2) */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 2rem;
+}
+
+/*selve kortet */
+.info-card {
+    background: #F5F7FB;              /* lys blå som i wireframe */
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    border: none;
+    transition: background-color 0.15s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    background-color: #E8EEF9;
+}
+
+/* kort-overskrift */
+.info-card h2 {
+    margin-bottom: 0.75rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: #003778;
+}
+
+/*brødtekst i kort */
+.info-card p {
+    font-size: 14px;
+    line-height: 1.5rem;
+    color: #383f4b;
+}
+
+/*responsiv – på små skærme 1 kolonne */
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-container {
+        padding: 1.5rem 1rem 2rem;
+    }
+}
+

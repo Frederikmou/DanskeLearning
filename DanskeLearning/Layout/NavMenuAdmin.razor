@@ -1,0 +1,20 @@
+@inject NavigationManager NavManager
+
+<nav class="navmenu">
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/InformationPageAdmin"))">
+        Dashboard
+    </button>
+   
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/"))">
+        MyTeam
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/"))">
+        MyEmployee
+    </button>
+    
+    <button class="nav-btn" @onclick="@(() => NavManager.NavigateTo("/LearningCatalog"))">
+        LearningCatalog
+    </button>
+    
+</nav>
