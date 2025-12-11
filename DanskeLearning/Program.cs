@@ -20,10 +20,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 //builder.Services.AddSingleton<IDashboardService, DashboardService>();
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("https://localhost:7148/") // <-- API port
+    BaseAddress = new Uri("https://eksamenserver2025.azurewebsites.net") // <-- API port
 });
 
-builder.Services.AddBlazoredSessionStorage();
+builder.Services.AddBlazoredSessionStorage();   
 
 builder.Services.AddScoped<IDashboardService, DashboardServiceHttp>();
 builder.Services.AddScoped<ISubjectService, SubjectServiceHttp>();
