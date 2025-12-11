@@ -1,0 +1,73 @@
+@page "/MyEmployee/{userId:guid}"
+@using Core.Models
+
+<h2 class="text-center fw-bold">Assigning</h2>
+
+@if (employee == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="assign-layout">
+        <section class="assign-card">
+            <h3>Employee Information:</h3>
+            <p><strong>Full Name:</strong> @employee.firstName @employee.lastName</p>
+            <p><strong>A-Number:</strong> @employee.userName</p>
+            <p><strong>Work Email:</strong> @employee.email</p>
+            <p><strong>Work Phone:</strong> @employee.phoneNumber</p>
+        </section>
+
+        <section class="assign-card">
+            <h3>Employee Status:</h3>
+            <p><strong>Assigned:</strong></p>
+            <div class="status-row">
+                <div class="status-box"></div>
+                <div class="status-box"></div>
+                <div class="status-box"></div>
+                <div class="status-box"></div>
+            </div>
+
+            <p class="mt-3"><strong>Completed:</strong></p>
+            <div class="status-row">
+                <div class="status-box"></div>
+                <div class="status-box"></div>
+            </div>
+        </section>
+    </div>
+}
+
+@code {
+    [Parameter] public Guid userId { get; set; }
+
+    private User? employee;
+
+    protected override void OnInitialized()
+    {
+        employee = new User
+        {
+            UserId = userId,
+            firstName = "Liam",
+            lastName = "Carter",
+            userName = "AF1123",
+            email = "LCAR@danskebank.dk",
+            phoneNumber = "+45 76 88 88 89"
+        };
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

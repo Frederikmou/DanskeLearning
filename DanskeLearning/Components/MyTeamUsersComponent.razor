@@ -1,0 +1,17 @@
+@using Core.Models
+@inject NavigationManager NavManager
+
+<div class="subject-button" @onclick="OpenAssignPage">
+    <p class="subject-title">@user.firstName @user.lastName</p>
+    <p class="subject-subtitle">@user.userName</p> 
+</div>
+
+@code {
+
+    [Parameter] public User user { get; set; } = default!;
+
+    private void OpenAssignPage()
+    {
+        NavManager.NavigateTo($"/MyEmployee/@user.userId");
+    }
+}
