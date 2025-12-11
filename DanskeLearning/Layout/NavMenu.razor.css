@@ -20,6 +20,7 @@
     text-align: left;
     cursor: pointer;
     padding: 5px 0;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
 }
 
 .nav-btn:hover {
