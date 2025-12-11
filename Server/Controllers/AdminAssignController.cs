@@ -1,6 +1,12 @@
+using Core.Models;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Server.Controllers;
 
-public class AdminAssignController
+[ApiController]
+[Route("/AdminAssign")]
+
+public class AdminAssignController : ControllerBase
 
 
 
