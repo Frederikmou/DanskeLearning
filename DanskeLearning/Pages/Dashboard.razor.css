@@ -4,3 +4,12 @@
     gap: 40px;
     padding: 20px;
 }
+
+h3 {
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: #003778;
+    padding-bottom: 25px;
+}

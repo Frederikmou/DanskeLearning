@@ -1,3 +1,4 @@
+@inject NavigationManager NavManager
 @page "/InformationPage"
 
 <div class="info-container">
@@ -5,17 +6,15 @@
     <h1 class="page-title">Dashboard</h1>
 
     <div class="info-grid">
-
-        <div class="info-card">
+      
+        <div class="info-card" @onclick="@( () => NavigateTo("/InformationPage") )">
             <h2>Dashboard</h2>
-            <p>
-                På siden Dashboard kan du se oversigten over de forskellige sider som platformen indebærer.
-                Det er her du befinder dig nu, og her du altid kan vende tilbage til, hvis du ønsker overblik
-                over alle de tilgængelige sider.
-            </p>
+            <p> På siden Dashboard kan du se oversigten over de forskellige sider som platformen indebærer. 
+                Det er her du befinder dig nu, og her du altid kan vende tilbage til, hvis du ønsker overblik over 
+                alle de tilgængelige sider. </p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card" @onclick="@( () => NavigateTo("/Dashboard") )">
             <h2>MyLearning</h2>
             <p>
                 På siden MyLearning kan du se de emner du er blevet tildelt af din nærmeste leder.
@@ -23,7 +22,7 @@
             </p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card" @onclick="@( () => NavigateTo("/MyGrowth") )">
             <h2>MyGrowth</h2>
             <p>
                 På siden MyGrowth finder du dine månedlige check-ins. MyGrowth er skabt til dig for din
@@ -32,7 +31,7 @@
             </p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card" @onclick="@( () => NavigateTo("/LearningCatalog") )">
             <h2>LearningCatalog</h2>
             <p>
                 På siden LearningCatalog får du et overblik over alle de relevante fagområder for netop dit
@@ -42,3 +41,10 @@
 
     </div>
 </div>
+
+@code {
+    void NavigateTo(string url)
+    {
+        NavManager.NavigateTo(url);
+    }
+}
