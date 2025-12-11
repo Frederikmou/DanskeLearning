@@ -1,0 +1,79 @@
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #003778;
+    padding-bottom: 25px;
+}
+
+/*container med alle tre kort*/
+.info-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;                 /* Mindre mellemrum */
+    margin: 0 auto;
+    width: 80%;
+}
+
+/*kort til siden*/
+.info-card-right {
+    background: #f2f7ff;
+    padding: 25px;
+    border-radius: 8px;
+    flex: 2; /* 2/3 af pladsen */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/*kort til siden*/
+.info-card-left {
+    background: #f2f7ff;
+    padding: 25px;
+    border-radius: 8px;
+    flex: 1; /*1/3 del af pladsen*/
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.card-admin {
+    background: #f2f7ff;
+    padding: 25px;
+    border-radius: 8px;
+    flex: 2; /* 2/3 af pladsen */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #003778;
+    font-weight: 600;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+}
+
+p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #003778;
+    font-weight: 500;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
+}
+
+.info-card-left p,
+.info-card-right p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+/*responsiv – på mobil bliver de under hinanden */
+@media (max-width: 1024px) {
+    .info-container {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .info-card-left,
+    .info-card-right {
+        width: 100%;
+    }
+}

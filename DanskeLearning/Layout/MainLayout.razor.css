@@ -64,10 +64,15 @@
     background-color: #0054f0;
 }
 
-.header-username {
+.header-username-btn {
+    background: none;
+    border: none;
     color: white;
-    font-size: 12px;
-    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Canvas Sans Medium", "Segoe UI", sans-serif;
 }
 
 .content {

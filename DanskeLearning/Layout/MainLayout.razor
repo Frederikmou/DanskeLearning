@@ -36,9 +36,9 @@
                 }
                 else
                 {
-                    <span class="header-username">
-                        @UserSession.CurrentUser.firstName
-                    </span>
+                    <button class="header-username-btn" @onclick="@(() => NavManager.NavigateTo("/MyInformation"))">
+                        MyProfile @UserSession.CurrentUser.firstName
+                    </button>
 
                     <button class="logout-header-btn"
                             @onclick="OnLogoutClicked">
