@@ -12,4 +12,8 @@ public interface ILearningAssignmentRepo
     Task<List<LearningAssignment>> GetAssignmentsByUserIdAsync(Guid userId);
     
     Task<List<LearningAssignment>> GetAllAssignmentsAsync();
+    
+    Task DeleteAssignmentAsync(int assignmentId);
+    
+    Task<List<LearningAssignment>> GetAssignmentsByStatusAsync(Guid userId, bool status);
 }

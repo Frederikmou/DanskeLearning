@@ -166,4 +166,63 @@ public class LearningAssignmentRepo : ILearningAssignmentRepo
 
         return result;
     }
+    
+    public async Task DeleteAssignmentAsync(int assignmentId)
+    {
+        await using var dbConnection = new NpgsqlConnection(connectionString);
+        await dbConnection.OpenAsync();
+
+        await using var command = dbConnection.CreateCommand();
+        command.CommandText = @"DELETE FROM learningassignment WHERE assignmentid = @assignmentid";
+        command.Parameters.AddWithValue("@assignmentid", assignmentId);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task<List<LearningAssignment>> GetAssignmentsByStatusAsync(Guid userId, bool status)
+    {
+        var result = new List<LearningAssignment>();
+
+        using (var dbConnection = new NpgsqlConnection(connectionString))
+        {
+            await dbConnection.OpenAsync();
+
+            var command = dbConnection.CreateCommand();
+            command.CommandText = @"SELECT assignmentid, userid, articleid, testid, subjectid, status, assigned, completeddate 
+                                    FROM learningassignment 
+                                    WHERE userid = @userid AND status = @status 
+                                    ORDER BY assigned DESC";
+            command.Parameters.AddWithValue("@userid", userId);
+            command.Parameters.AddWithValue("@status", status);
+
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (reader.Read())
+                {
+                    var assignmentid = reader.GetInt32(0);
+                    var userid = reader.GetGuid(1);
+                    var articleid = reader.IsDBNull(2) ? (int?)null : reader.GetInt32(2);
+                    var testid = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3);
+                    var subjectid = reader.GetInt32(4);
+                    var statusValue = reader.GetBoolean(5);
+                    var assigned = reader.GetDateTime(6);
+                    var completeddate = reader.IsDBNull(7) ? (DateTime?)null : reader.GetDateTime(7);
+
+                    result.Add(new LearningAssignment
+                    {
+                        assignmentId = assignmentid,
+                        userId = userid,
+                        articleId = articleid,
+                        testId = testid,
+                        subjectId = subjectid,
+                        status = statusValue,
+                        assigned = assigned,
+                        completedDate = completeddate
+                    }
+                    );
+                }
+            }
+        }
+        return result;
+    }
 }
