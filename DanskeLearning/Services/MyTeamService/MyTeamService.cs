@@ -17,14 +17,6 @@ public class MyTeamService : IMyTeamService
 
     public async Task<List<Team>> GetMyTeamsAsync()
     {
-        var teams =
-            await _httpClient.GetFromJsonAsync<List<Team>>("api/myteam");
-
-        if (teams == null)
-        {
-            return new List<Team>();
-        }
-
-        return teams;
+        return await _httpClient.GetFromJsonAsync<List<Team>>("api/MyTeams");
     }
 }
