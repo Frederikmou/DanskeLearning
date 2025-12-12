@@ -11,4 +11,4 @@ public class LearningAssignment
     public bool status { get; set; }
     public DateTime assigned { get; set; } = DateTime.Now;
     public DateTime? completedDate { get; set; }
-}
+} 

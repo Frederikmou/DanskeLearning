@@ -6,30 +6,26 @@ namespace Server.Controllers;
 
 [ApiController]
 [Route("api/AdminAssign")]
-public class AdminAssignController : ControllerBase
+public class LearningAssignmentController : ControllerBase
 {
     private readonly ILearningAssignmentRepo _assignmentRepo;
 
     
-    public AdminAssignController(ILearningAssignmentRepo assignmentRepo)
+    public LearningAssignmentController(ILearningAssignmentRepo assignmentRepo)
     {
         _assignmentRepo = assignmentRepo;
     }
-
     [HttpPost]
-    public async Task<IActionResult> CreateAssignment([FromBody] AdminAssign adminAssign)
+    public async Task<IActionResult> CreateAssignment([FromBody] LearningAssignment assign)
     {
-        var assignment = new LearningAssignment
+        // Set default values if not provided
+        assign.status = false;
+        if (assign.assigned == default(DateTime))
         {
-            userId = adminAssign.UserId,
-            subjectId = adminAssign.SubjectId,
-            assigned = adminAssign.AssignedDate,
-            testId = adminAssign.testId > 0 ? adminAssign.testId : null,
-            articleId = adminAssign.articleId > 0 ? adminAssign.articleId : null,
-            status = false
-        };
+            assign.assigned = DateTime.Now;
+        }
 
-        var createdAssignment = await _assignmentRepo.CreateAssignmentAsync(assignment);
+        var createdAssignment = await _assignmentRepo.CreateAssignmentAsync(assign);
         return Ok(createdAssignment);
     }
 

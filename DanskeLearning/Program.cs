@@ -13,6 +13,7 @@ using DanskeLearning.Services.MyGrowthService;
 using DanskeLearning.Services.TestService;
 using DanskeLearning.Services.MyEmployeeService;
 using DanskeLearning.Services.MyTeamService;
+using DanskeLearning.Services.LearningAssignmentService;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IMyGrowthService, MyGrowthService>();
 builder.Services.AddScoped<IArticleReadStatusService, ArticleReadStatusService>();
 builder.Services.AddScoped<IMyEmployeeService, MyEmployeeService>();
 builder.Services.AddScoped<IMyTeamService, MyTeamService>();
+builder.Services.AddScoped<ILearningAssignmentService, LearningAssignmentService>();
 
 
 await builder.Build().RunAsync();

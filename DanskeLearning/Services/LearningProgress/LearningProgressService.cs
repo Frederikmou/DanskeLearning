@@ -1,4 +1,4 @@
-namespace DanskeLearning.Services.LearningAssignment;
+namespace DanskeLearning.Services.LearningProgress;
 
 public class LearningProgressService
 {
